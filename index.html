@@ -267,6 +267,114 @@
         border-left-width: 0;
       }
     }
+
+    /* Custom styles for circular progress bars in skills section */
+    .skills-section {
+      text-align: center;
+    }
+
+    .skill-item {
+      position: relative;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .circular-progress {
+      position: relative;
+      height: 150px;
+      /* Adjust size as needed */
+      width: 150px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .circular-progress:before {
+      content: "";
+      position: absolute;
+      height: 120px;
+      width: 120px;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+
+    .circular-progress .progress-value {
+      position: relative;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #64a19d;
+      /* Primary color */
+      z-index: 1;
+    }
+
+    .circular-progress .progress-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      /* Icon size */
+      color: #64a19d;
+      /* Primary color */
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .circular-progress:hover .progress-value {
+      opacity: 0;
+    }
+
+    .circular-progress:hover .progress-icon {
+      opacity: 1;
+    }
+
+    .skills-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #333;
+    }
+
+    /* Specific colors for each skill for more visual flair */
+    .html-progress {
+      background: conic-gradient(#64a19d 95%, #ededed 0deg);
+    }
+
+    .css-progress {
+      background: conic-gradient(#64a19d 90%, #ededed 0deg);
+    }
+
+    .php-progress {
+      background: conic-gradient(#64a19d 80%, #ededed 0deg);
+    }
+
+    .sql-progress {
+      background: conic-gradient(#64a19d 85%, #ededed 0deg);
+    }
+
+    .mikrotik-progress {
+      background: conic-gradient(#64a19d 70%, #ededed 0deg);
+    }
+
+    .visual-basic-progress {
+      background: conic-gradient(#64a19d 65%, #ededed 0deg);
+    }
+
+    .hardware-progress {
+      background: conic-gradient(#64a19d 90%, #ededed 0deg);
+    }
+
+    /* Optional: Animation for progress bar on hover or scroll */
+    .circular-progress {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .circular-progress:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 
@@ -342,78 +450,95 @@
           <h2 class="text-black mb-5" data-aos="fade-down">My Skills</h2>
           <hr class="section-divider" />
           <div class="row justify-content-center">
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
-              <div class="card h-100">
-                <div class="card-body">
-                  <i class="fab fa-html5 text-primary"></i>
-                  <h5 class="card-title mt-3">HTML</h5>
-                  <p class="card-text">Website structuring</p>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="100">
+              <div class="skill-item">
+                <div class="circular-progress html-progress">
+                  <span class="progress-value">95%</span>
+                  <i class="fab fa-html5 progress-icon"></i>
                 </div>
+                <h5 class="skills-title">HTML</h5>
+                <p class="card-text text-muted">Website structuring</p>
               </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
-              <div class="card h-100">
-                <div class="card-body">
-                  <i class="fab fa-css3-alt text-primary"></i>
-                  <h5 class="card-title mt-3">CSS</h5>
-                  <p class="card-text">Design & styling</p>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="200">
+              <div class="skill-item">
+                <div class="circular-progress css-progress">
+                  <span class="progress-value">90%</span>
+                  <i class="fab fa-css3-alt progress-icon"></i>
                 </div>
+                <h5 class="skills-title">CSS</h5>
+                <p class="card-text text-muted">Design & styling</p>
               </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
-              <div class="card h-100">
-                <div class="card-body">
-                  <i class="fab fa-php text-primary"></i>
-                  <h5 class="card-title mt-3">PHP</h5>
-                  <p class="card-text">Backend development</p>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="300">
+              <div class="skill-item">
+                <div class="circular-progress php-progress">
+                  <span class="progress-value">80%</span>
+                  <i class="fab fa-php progress-icon"></i>
                 </div>
+                <h5 class="skills-title">PHP</h5>
+                <p class="card-text text-muted">Backend development</p>
               </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="400">
-              <div class="card h-100">
-                <div class="card-body">
-                  <i class="fas fa-database text-primary"></i>
-                  <h5 class="card-title mt-3">SQL Server</h5>
-                  <p class="card-text">Database management</p>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="400">
+              <div class="skill-item">
+                <div class="circular-progress sql-progress">
+                  <span class="progress-value">85%</span>
+                  <i class="fas fa-database progress-icon"></i>
                 </div>
+                <h5 class="skills-title">SQL Server</h5>
+                <p class="card-text text-muted">Database management</p>
               </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="500">
-              <div class="card h-100">
-                <div class="card-body">
-                  <i class="fas fa-database text-primary"></i>
-                  <h5 class="card-title mt-3">PostgreSQL</h5>
-                  <p class="card-text">Open-source database system</p>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="500">
+              <div class="skill-item">
+                <div class="circular-progress sql-progress">
+                  <span class="progress-value">85%</span>
+                  <i class="fas fa-database progress-icon"></i>
                 </div>
+                <h5 class="skills-title">PostgreSQL</h5>
+                <p class="card-text text-muted">Open-source database system</p>
               </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="600">
-              <div class="card h-100">
-                <div class="card-body">
-                  <i class="fas fa-network-wired text-primary"></i>
-                  <h5 class="card-title mt-3">Mikrotik</h5>
-                  <p class="card-text">Network configuration</p>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="600">
+              <div class="skill-item">
+                <div class="circular-progress mikrotik-progress">
+                  <span class="progress-value">70%</span>
+                  <i class="fas fa-network-wired progress-icon"></i>
                 </div>
+                <h5 class="skills-title">Mikrotik</h5>
+                <p class="card-text text-muted">Network configuration</p>
               </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="700">
-              <div class="card h-100">
-                <div class="card-body">
-                  <i class="fas fa-code text-primary"></i>
-                  <h5 class="card-title mt-3">Visual Basic</h5>
-                  <p class="card-text">Desktop application development</p>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="700">
+              <div class="skill-item">
+                <div class="circular-progress visual-basic-progress">
+                  <span class="progress-value">65%</span>
+                  <i class="fas fa-code progress-icon"></i>
                 </div>
+                <h5 class="skills-title">Visual Basic</h5>
+                <p class="card-text text-muted">Desktop application development</p>
               </div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="800">
-              <div class="card h-100">
-                <div class="card-body">
-                  <i class="fas fa-wrench text-primary"></i>
-                  <h5 class="card-title mt-3">Hardware</h5>
-                  <p class="card-text">Troubleshooting & repair</p>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="800">
+              <div class="skill-item">
+                <div class="circular-progress hardware-progress">
+                  <span class="progress-value">90%</span>
+                  <i class="fas fa-wrench progress-icon"></i>
                 </div>
+                <h5 class="skills-title">Hardware</h5>
+                <p class="card-text text-muted">Troubleshooting & repair</p>
               </div>
             </div>
+
           </div>
         </div>
       </div>
