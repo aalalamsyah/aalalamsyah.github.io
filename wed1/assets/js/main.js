@@ -1,3 +1,4 @@
+// file: main.js
 document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize Animate On Scroll
@@ -25,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("Autoplay was prevented. User must interact with the page first.");
         });
 
-        // Set cover to display none after transition to allow scrolling
         setTimeout(() => {
             cover.style.display = 'none';
         }, 1000);
@@ -81,21 +81,43 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 1000);
     
-    // RSVP Form Submission using Google Apps Script
+    // RSVP Form Submission with SweetAlert
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxMyfyhQAJpfbCC2qDIexN56XcZP6Qmk6_eCub2xK0fID5K2SKpdaDYR7UJO26XgiA5bA/exec';
     const form = document.getElementById('rsvp-form');
-    const formResponse = document.getElementById('form-response');
 
     form.addEventListener('submit', e => {
         e.preventDefault();
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+
+        // Show loading SweetAlert
+        Swal.fire({
+            title: 'Mengirim Ucapan...',
+            text: 'Mohon tunggu sebentar',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
             .then(response => {
-                formResponse.innerHTML = '<div class="alert alert-success">Terima kasih! Ucapan Anda telah terkirim.</div>';
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Terima kasih! Ucapan Anda telah terkirim.',
+                    confirmButtonColor: '#3085d6',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
                 form.reset();
                 console.log('Success!', response);
             })
             .catch(error => {
-                formResponse.innerHTML = '<div class="alert alert-danger">Maaf, terjadi kesalahan. Coba lagi nanti.</div>';
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Maaf, terjadi kesalahan. Coba lagi nanti.',
+                    confirmButtonColor: '#d33'
+                });
                 console.error('Error!', error.message);
             });
     });
