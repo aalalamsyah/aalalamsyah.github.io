@@ -1,29 +1,32 @@
 // file: main.js
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Initialize Animate On Scroll
+document.addEventListener('DOMContentLoaded', function () {
+
+    // === Initialize Animate On Scroll ===
     AOS.init({
         duration: 800,
         once: true,
     });
 
-    // Handle opening the invitation
+    // === Element references ===
     const openButton = document.getElementById('open-invitation');
     const cover = document.getElementById('cover');
     const mainContent = document.getElementById('main-content');
     const audio = document.getElementById('background-music');
     const musicControl = document.getElementById('music-control');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const playPauseIcon = document.getElementById('play-pause-icon');
 
-    openButton.addEventListener('click', function() {
+    // === Handle opening the invitation ===
+    openButton.addEventListener('click', function () {
         cover.style.transition = 'transform 1s ease-out, opacity 1s ease-out';
         cover.style.transform = 'translateY(-100%)';
         cover.style.opacity = '0';
-        
+
         mainContent.style.display = 'block';
         musicControl.style.display = 'block';
-        
-        audio.play().catch(error => {
-            console.log("Autoplay was prevented. User must interact with the page first.");
+
+        audio.play().catch(() => {
+            console.log("Autoplay prevented. User must interact with the page first.");
         });
 
         setTimeout(() => {
@@ -31,23 +34,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     });
 
-    // Music play/pause control
-    const playPauseBtn = document.getElementById('play-pause-btn');
-    const playPauseIcon = document.getElementById('play-pause-icon');
-
-    playPauseBtn.addEventListener('click', function() {
+    // === Music play/pause control ===
+    playPauseBtn.addEventListener('click', function () {
         if (audio.paused) {
             audio.play();
-            playPauseIcon.classList.remove('bi-play-fill');
-            playPauseIcon.classList.add('bi-pause-fill');
+            playPauseIcon.classList.replace('bi-play-fill', 'bi-pause-fill');
         } else {
             audio.pause();
-            playPauseIcon.classList.remove('bi-pause-fill');
-            playPauseIcon.classList.add('bi-play-fill');
+            playPauseIcon.classList.replace('bi-pause-fill', 'bi-play-fill');
         }
     });
 
-    // Get guest name from URL
+    // === Get guest name from URL ===
     const urlParams = new URLSearchParams(window.location.search);
     const guestName = urlParams.get('to');
     const guestNameElement = document.getElementById('guest-name');
@@ -58,17 +56,16 @@ document.addEventListener('DOMContentLoaded', function() {
         guestNameElement.textContent = 'Tamu Undangan';
     }
 
-    // Auto-isi nama di form RSVP + read-only
+    // === Auto-fill RSVP name + read-only ===
     const namaInput = document.querySelector('#rsvp-form input[name="nama"]');
     if (guestName && namaInput) {
         namaInput.value = decodeURIComponent(guestName.replace(/\+/g, ' '));
         namaInput.readOnly = true;
     }
 
-    // Countdown Timer
+    // === Countdown Timer ===
     const countdownDate = new Date("May 06, 2028 09:00:00").getTime();
-    
-    const countdownFunction = setInterval(function() {
+    const countdownFunc = setInterval(function () {
         const now = new Date().getTime();
         const distance = countdownDate - now;
 
@@ -83,12 +80,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
 
         if (distance < 0) {
-            clearInterval(countdownFunction);
+            clearInterval(countdownFunc);
             document.getElementById('countdown').innerHTML = "<h2>Acara Telah Selesai</h2>";
         }
     }, 1000);
-    
-    // RSVP Form Submission
+
+    // === RSVP Form Submission ===
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxMyfyhQAJpfbCC2qDIexN56XcZP6Qmk6_eCub2xK0fID5K2SKpdaDYR7UJO26XgiA5bA/exec';
     const form = document.getElementById('rsvp-form');
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -117,13 +114,11 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Mengirim Ucapan...',
             text: 'Mohon tunggu sebentar',
             allowOutsideClick: false,
-            didOpen: () => {
-                Swal.showLoading();
-            }
+            didOpen: () => Swal.showLoading()
         });
 
         fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-            .then(response => {
+            .then(() => {
                 Swal.fire({
                     icon: 'success',
                     title: 'Berhasil!',
@@ -140,8 +135,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         //     ucapanList.prepend(newItem);
                         // }
 
-                        // Confetti
-                        const duration = 1.5 * 1000;
+                        // Confetti animation
+                        const duration = 1500;
                         const end = Date.now() + duration;
                         (function frame() {
                             confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
@@ -151,10 +146,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
-                // Reset hanya kolom ucapan
+                // Reset hanya kolom ucapan & kehadiran
                 form.querySelector('textarea[name="ucapan"]').value = "";
                 form.querySelector('select[name="kehadiran"]').value = "";
-
                 submitBtn.disabled = false;
             })
             .catch(error => {
@@ -171,9 +165,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-// Function to copy bank account number
+// === Function: copy bank account number to clipboard ===
 function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(function() {
+    navigator.clipboard.writeText(text).then(() => {
         Swal.fire({
             icon: 'success',
             title: 'Berhasil Disalin!',
@@ -181,7 +175,7 @@ function copyToClipboard(text) {
             showConfirmButton: false,
             timer: 2000
         });
-    }, function(err) {
+    }).catch(() => {
         Swal.fire({
             icon: 'error',
             title: 'Gagal',
