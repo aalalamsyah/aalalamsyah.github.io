@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize Animate On Scroll
     AOS.init({
         duration: 800,
-        once: true, // Animation happens only once
+        once: true,
     });
 
     // Handle opening the invitation
@@ -51,11 +51,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const guestName = urlParams.get('to');
     const guestNameElement = document.getElementById('guest-name');
-    
+
     if (guestName) {
         guestNameElement.textContent = decodeURIComponent(guestName.replace(/\+/g, ' '));
     } else {
         guestNameElement.textContent = 'Tamu Undangan';
+    }
+
+    // Auto-isi nama di form RSVP + read-only
+    const namaInput = document.querySelector('#rsvp-form input[name="nama"]');
+    if (guestName && namaInput) {
+        namaInput.value = decodeURIComponent(guestName.replace(/\+/g, ' '));
+        namaInput.readOnly = true;
     }
 
     // Countdown Timer
@@ -81,14 +88,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 1000);
     
-    // RSVP Form Submission with SweetAlert
+    // RSVP Form Submission
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxMyfyhQAJpfbCC2qDIexN56XcZP6Qmk6_eCub2xK0fID5K2SKpdaDYR7UJO26XgiA5bA/exec';
     const form = document.getElementById('rsvp-form');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const ucapanList = document.getElementById('ucapan-list'); // daftar ucapan
 
     form.addEventListener('submit', e => {
         e.preventDefault();
 
-        // Show loading SweetAlert
+        const nama = form.querySelector('input[name="nama"]').value.trim();
+        const kehadiran = form.querySelector('select[name="kehadiran"]').value.trim();
+        const ucapan = form.querySelector('textarea[name="ucapan"]').value.trim();
+
+        if (!nama || !kehadiran || !ucapan) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Form Belum Lengkap',
+                text: 'Mohon isi semua kolom sebelum mengirim.',
+                confirmButtonColor: '#f0ad4e'
+            });
+            return;
+        }
+
+        // Disable tombol + loading
+        submitBtn.disabled = true;
         Swal.fire({
             title: 'Mengirim Ucapan...',
             text: 'Mohon tunggu sebentar',
@@ -106,10 +130,32 @@ document.addEventListener('DOMContentLoaded', function() {
                     text: 'Terima kasih! Ucapan Anda telah terkirim.',
                     confirmButtonColor: '#3085d6',
                     timer: 2000,
-                    showConfirmButton: false
+                    showConfirmButton: false,
+                    didClose: () => {
+                        // Tambahkan ucapan baru di halaman
+                        // if (ucapanList) {
+                        //     const newItem = document.createElement('div');
+                        //     newItem.classList.add('ucapan-item');
+                        //     newItem.innerHTML = `<strong>${nama}</strong>: ${ucapan}`;
+                        //     ucapanList.prepend(newItem);
+                        // }
+
+                        // Confetti
+                        const duration = 1.5 * 1000;
+                        const end = Date.now() + duration;
+                        (function frame() {
+                            confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+                            confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+                            if (Date.now() < end) requestAnimationFrame(frame);
+                        })();
+                    }
                 });
-                form.reset();
-                console.log('Success!', response);
+
+                // Reset hanya kolom ucapan
+                form.querySelector('textarea[name="ucapan"]').value = "";
+                form.querySelector('select[name="kehadiran"]').value = "";
+
+                submitBtn.disabled = false;
             })
             .catch(error => {
                 Swal.fire({
@@ -118,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     text: 'Maaf, terjadi kesalahan. Coba lagi nanti.',
                     confirmButtonColor: '#d33'
                 });
+                submitBtn.disabled = false;
                 console.error('Error!', error.message);
             });
     });
