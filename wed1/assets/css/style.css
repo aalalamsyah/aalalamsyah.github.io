@@ -1,0 +1,152 @@
+/* Import Google Fonts di atas sudah dilakukan di HTML */
+
+:root {
+    --primary-color: #6c5b7b; /* Warna ungu kalem */
+    --secondary-color: #c06c84; /* Warna pink tua */
+    --gold-color: #f67280; /* Aksen warna */
+    --text-color: #353535;
+    --bg-light: #f8f7f4;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Cover Section */
+.cover-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url('../img/cover.jpg') no-repeat center center/cover;
+    z-index: 100;
+}
+.cover-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.cover-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../img/cover.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+}
+.hero-section h1 {
+    font-size: 4rem;
+}
+
+/* General Section Styling */
+section {
+    padding: 6rem 0;
+}
+
+/* Countdown Section */
+.countdown-section {
+    background-color: var(--bg-light);
+}
+.countdown-timer .col {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin: 0 10px;
+}
+.countdown-timer h3 {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+.countdown-timer span {
+    font-size: 1rem;
+}
+
+/* Couple Section */
+.couple-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 5px solid var(--secondary-color);
+    margin-bottom: 1rem;
+}
+.couple-section h3 {
+    color: var(--primary-color);
+}
+
+/* Event Section */
+.event-section {
+    background-color: var(--bg-light);
+}
+.event-card {
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.event-card:hover {
+    transform: translateY(-10px);
+}
+.event-card h3 {
+    color: var(--secondary-color);
+}
+
+/* Gallery Section */
+.gallery-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.gallery-img:hover {
+    transform: scale(1.05);
+}
+
+/* RSVP Section */
+.rsvp-section {
+    background-color: var(--bg-light);
+}
+
+/* Gift Section */
+.gift-card {
+    border: 1px solid var(--primary-color);
+    background-color: #fff;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+}
+
+/* Music Control */
+.music-control-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 99;
+}
+.music-control-btn .btn {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.music-control-btn .bi {
+    font-size: 24px;
+}
