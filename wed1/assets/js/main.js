@@ -105,8 +105,20 @@ document.addEventListener('DOMContentLoaded', function() {
 // Function to copy bank account number
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(function() {
-        alert('Nomor rekening berhasil disalin!');
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil Disalin!',
+            text: 'Nomor rekening berhasil disalin ke clipboard.',
+            showConfirmButton: false,
+            timer: 2000
+        });
     }, function(err) {
-        alert('Gagal menyalin nomor rekening.');
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Gagal menyalin nomor rekening. Mohon coba lagi.',
+            showConfirmButton: false,
+            timer: 2000
+        });
     });
 }
