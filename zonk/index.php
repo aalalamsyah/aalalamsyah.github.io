@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM LOCKDOWN :: UNAUTHORIZED ACCESS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --glow-color: hsl(140, 80%, 50%); /* Warna hijau neon */
+            --scanline-color: rgba(0, 255, 136, 0.15);
+        }
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: #000;
+            color: var(--glow-color);
+            text-shadow:
+                0 0 5px var(--glow-color),
+                0 0 8px var(--glow-color),
+                0 0 15px #0fa;
+            overflow: hidden;
+        }
+        canvas#matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 98%,
+                var(--scanline-color) 100%
+            );
+            background-size: 100% 4px;
+            animation: scan 10s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        @keyframes scan {
+            from { background-position-y: 0; }
+            to { background-position-y: 100vh; }
+        }
+        .terminal-container {
+            z-index: 2;
+        }
+        .terminal {
+            border: 2px solid var(--glow-color);
+            box-shadow: 0 0 20px var(--glow-color) inset, 0 0 15px var(--glow-color);
+            background-color: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(8px);
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2rem;
+            background-color: var(--glow-color);
+            animation: blink 1s step-end infinite;
+            box-shadow: 0 0 5px var(--glow-color);
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+        .progress-bar-container { display: flex; align-items: center; }
+        .progress-bar { flex-grow: 1; background-color: rgba(0, 255, 136, 0.2); border: 1px solid var(--glow-color); padding: 2px; }
+        .progress-bar-fill { background-color: var(--glow-color); height: 10px; width: 0%; transition: width 0.1s linear; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <canvas id="matrix-canvas"></canvas>
+    
+    <div class="scanline"></div>
+
+    <div class="terminal-container w-full max-w-4xl">
+        <div class="terminal p-6 rounded-lg">
+            <div id="terminal-content">
+                </div>
+            <span id="cursor" class="cursor" style="display: none;"></span>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- LOGIKA MATRIX RAIN ---
+            const canvas = document.getElementById('matrix-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+            const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const nums = '0123456789';
+            const alphabet = katakana + latin + nums;
+            const fontSize = 16;
+            const columns = canvas.width / fontSize;
+            const rainDrops = [];
+            for (let x = 0; x < columns; x++) {
+                rainDrops[x] = 1;
+            }
+            const drawMatrix = () => {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--glow-color').trim();
+                ctx.font = fontSize + 'px monospace';
+                for (let i = 0; i < rainDrops.length; i++) {
+                    const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                    ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                    if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        rainDrops[i] = 0;
+                    }
+                    rainDrops[i]++;
+                }
+            };
+            setInterval(drawMatrix, 33);
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+
+            // --- LOGIKA TERMINAL ---
+            const terminalContent = document.getElementById('terminal-content');
+            const cursor = document.getElementById('cursor');
+            const typingSpeed = 40;
+            const lineDelay = 400;
+
+            // Tambahkan logika untuk mengambil IP dari PHP
+            const userIp = '<?php echo htmlspecialchars($_SERVER['REMOTE_ADDR']); ?>';
+
+            const sequence = [
+                { type: 'text', content: '> Menginisialisasi firewall...' },
+                { type: 'text', content: '> Menganalisis koneksi masuk...' },
+                { type: 'text', content: '> PERINGATAN: Terdeteksi akses tidak sah.' },
+                { type: 'break', delay: 500 },
+                { type: 'text', content: '> Tujuan tidak terdefinisi. Rute tidak valid.' },
+                { type: 'text', content: '> Menjalankan protokol pelacakan...' },
+                { type: 'progress', duration: 3000, label: '> Melacak sumber koneksi' },
+                { type: 'break', delay: 500 },
+                { type: 'text', content: '> Pelacakan Selesai. Hasil:' },
+                { type: 'html', content: `
+                    <div class="mt-4 p-4 border border-red-500 bg-red-900/50 text-white" style="text-shadow: 0 0 5px #fff;">
+                        <p class="text-2xl font-bold">[ AKSES DITOLAK ]</p>
+                        <p class="mt-2">Alamat IP Anda telah dicatat dan dilaporkan.</p>
+                        <p class="text-lg font-bold mt-2">IP: ${userIp}</p>
+                    </div>
+                ` }
+            ];
+            
+            async function runSequence() {
+                for (const item of sequence) {
+                    switch (item.type) {
+                        case 'text':
+                            await typeLine(item.content);
+                            await delay(lineDelay);
+                            break;
+                        case 'html':
+                            await typeHTML(item.content);
+                            await delay(lineDelay);
+                            break;
+                        case 'progress':
+                            await runProgressBar(item.duration, item.label);
+                            await delay(lineDelay);
+                            break;
+                        case 'break':
+                            await delay(item.delay);
+                            break;
+                    }
+                }
+                cursor.style.display = 'none';
+            }
+
+            function delay(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            function typeLine(text) {
+                return new Promise(resolve => {
+                    const line = document.createElement('div');
+                    terminalContent.appendChild(line);
+                    let i = 0;
+                    const interval = setInterval(() => {
+                        line.innerHTML = text.substring(0, i+1) + '<span class="cursor"></span>';
+                        i++;
+                        if (i >= text.length) {
+                            clearInterval(interval);
+                            line.innerHTML = text;
+                            resolve();
+                        }
+                    }, typingSpeed);
+                });
+            }
+
+            function typeHTML(html) {
+                 return new Promise(resolve => {
+                     const container = document.createElement('div');
+                     terminalContent.appendChild(container);
+                     container.innerHTML = html;
+                     resolve();
+                 });
+            }
+
+            function runProgressBar(duration, label) {
+                return new Promise(resolve => {
+                    const container = document.createElement('div');
+                    container.className = 'progress-bar-container mt-2';
+                    const textLabel = document.createElement('span');
+                    textLabel.textContent = label + ' ';
+                    const barContainer = document.createElement('div');
+                    barContainer.className = 'progress-bar';
+                    const barFill = document.createElement('div');
+                    barFill.className = 'progress-bar-fill';
+                    const percentage = document.createElement('span');
+                    percentage.textContent = ' 0%';
+                    percentage.className = 'ml-2';
+
+                    barContainer.appendChild(barFill);
+                    container.appendChild(textLabel);
+                    container.appendChild(barContainer);
+                    container.appendChild(percentage);
+                    terminalContent.appendChild(container);
+
+                    let progress = 0;
+                    const startTime = Date.now();
+                    const interval = setInterval(() => {
+                        const elapsedTime = Date.now() - startTime;
+                        progress = Math.min(100, (elapsedTime / duration) * 100);
+                        barFill.style.width = progress + '%';
+                        percentage.textContent = ` ${Math.floor(progress)}%`;
+                        if (progress >= 100) {
+                            clearInterval(interval);
+                            resolve();
+                        }
+                    }, 50);
+                });
+            }
+
+            // Fungsi untuk mencatat log ke backend
+            async function logAccess() {
+                try {
+                    const response = await fetch('save_log.php', {
+                        method: 'POST'
+                    });
+                    if (!response.ok) {
+                        console.error('Gagal menyimpan log:', response.statusText);
+                    } else {
+                        console.log('Log akses berhasil disimpan.');
+                    }
+                } catch (error) {
+                    console.error('Error saat mencoba menyimpan log:', error);
+                }
+            }
+
+            // Jalankan fungsi log dan animasi terminal
+            logAccess();
+            runSequence();
+        });
+    </script>
+</body>
+</html>
