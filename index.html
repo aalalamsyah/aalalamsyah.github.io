@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="Aal Alamsyah's personal profile" />
+  <meta name="author" content="Aal Alamsyah" />
+  <title>Aal Alamsyah | Profile</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <script src="https://use.fontawesome.com/releases/v6.5.2/js/all.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    /* Custom styles for the skills section */
+    .skills-section .card {
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .skills-section .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .skills-section .card-body {
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .skills-section .card-body i {
+      font-size: 4rem;
+      /* Larger icon size */
+      margin-bottom: 1rem;
+      color: #64a19d;
+      /* Primary color */
+    }
+
+    .skills-section .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .skills-section .card-text {
+      font-size: 0.9rem;
+      color: #6c757d;
+      text-align: center;
+    }
+
+    /* Custom CSS for Timeline (Experience Section) */
+    .timeline {
+      list-style: none;
+      padding: 20px 0 20px;
+      position: relative;
+    }
+
+    .timeline:before {
+      top: 0;
+      bottom: 0;
+      position: absolute;
+      content: " ";
+      width: 3px;
+      background-color: #e9ecef;
+      left: 50%;
+      margin-left: -1.5px;
+    }
+
+    .timeline>li {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .timeline>li:before,
+    .timeline>li:after {
+      content: " ";
+      display: table;
+    }
+
+    .timeline>li:after {
+      clear: both;
+    }
+
+    .timeline>li .timeline-panel {
+      width: 46%;
+      float: left;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 20px;
+      position: relative;
+      text-align: left;
+      /* Align text within panel */
+    }
+
+    .timeline>li .timeline-panel:before {
+      right: auto;
+      left: -15px;
+      border-right-width: 15px;
+      border-left-width: 0;
+    }
+
+    .timeline>li .timeline-panel:after {
+      right: auto;
+      left: -14px;
+      border-right-width: 14px;
+      border-left-width: 0;
+    }
+
+    .timeline>li .timeline-image {
+      left: 50%;
+      margin-left: -60px;
+      z-index: 100;
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 100%;
+      text-align: center;
+      font-size: 2rem;
+      line-height: 120px;
+      /* Center icon vertically */
+      color: #fff;
+      background-color: #64a19d;
+      /* Primary color */
+      border: 7px solid #e9ecef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .timeline>li.timeline-inverted>.timeline-panel {
+      float: right;
+    }
+
+    .timeline>li.timeline-inverted>.timeline-panel:before {
+      left: auto;
+      right: -15px;
+      border-left-width: 15px;
+      border-right-width: 0;
+    }
+
+    .timeline>li.timeline-inverted>.timeline-panel:after {
+      left: auto;
+      right: -14px;
+      border-left-width: 14px;
+      border-right-width: 0;
+    }
+
+    .timeline-heading h4 {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .timeline-heading h4.subheading {
+      font-size: 1.1em;
+      font-weight: normal;
+      color: #6c757d;
+    }
+
+    .timeline-body>p {
+      margin-bottom: 0;
+      line-height: 1.75;
+    }
+
+    /* Custom styles for education section cards */
+    .education-section .card {
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .education-section .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .education-section .card-body i {
+      font-size: 3.5rem;
+      /* Larger icon size */
+      color: #64a19d;
+      /* Primary color */
+    }
+
+    /* Styling for social icons hover effect */
+    .social a i {
+      transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    .social a:hover i {
+      transform: scale(1.2);
+      color: #64a19d !important;
+      /* Use primary color on hover */
+    }
+
+    /* Animation for navbar (optional, can also be set in scripts.js) */
+    #mainNav.navbar-scrolled {
+      animation: fadeInDown 0.5s ease-out;
+      /* Animation for fading in from top */
+    }
+
+    /* Style for the horizontal rule (pembatas) */
+    .section-divider {
+      border: 0;
+      height: 1px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(100, 161, 157, 0.75), rgba(0, 0, 0, 0));
+      margin: 3rem auto;
+      /* Add margin above and below */
+      width: 50%;
+      /* Adjust width as needed */
+    }
+
+    /* Media Queries for responsiveness */
+    @media (max-width: 768px) {
+      .timeline:before {
+        left: 18px;
+      }
+
+      .timeline>li .timeline-panel {
+        width: auto;
+        float: right;
+        margin-left: 50px;
+      }
+
+      .timeline>li .timeline-panel:before {
+        border-left-width: 0;
+        border-right-width: 15px;
+        left: -15px;
+      }
+
+      .timeline>li .timeline-panel:after {
+        border-left-width: 0;
+        border-right-width: 14px;
+        left: -14px;
+      }
+
+      .timeline>li .timeline-image {
+        left: 0;
+        margin-left: 0;
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+        font-size: 1.5rem;
+      }
+
+      .timeline>li.timeline-inverted>.timeline-panel {
+        float: right;
+      }
+
+      .timeline>li.timeline-inverted>.timeline-panel:before {
+        left: -15px;
+        border-right-width: 15px;
+        border-left-width: 0;
+      }
+
+      .timeline>li.timeline-inverted>.timeline-panel:after {
+        left: -14px;
+        border-right-width: 14px;
+        border-left-width: 0;
+      }
+    }
+
+    /* Custom styles for circular progress bars in skills section */
+    .skills-section {
+      text-align: center;
+    }
+
+    .skill-item {
+      position: relative;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .circular-progress {
+      position: relative;
+      height: 150px;
+      /* Adjust size as needed */
+      width: 150px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .circular-progress:before {
+      content: "";
+      position: absolute;
+      height: 120px;
+      width: 120px;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+
+    .circular-progress .progress-value {
+      position: relative;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #64a19d;
+      /* Primary color */
+      z-index: 1;
+    }
+
+    .circular-progress .progress-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      /* Icon size */
+      color: #64a19d;
+      /* Primary color */
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .circular-progress:hover .progress-value {
+      opacity: 0;
+    }
+
+    .circular-progress:hover .progress-icon {
+      opacity: 1;
+    }
+
+    .skills-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #333;
+    }
+
+    /* Specific colors for each skill for more visual flair */
+    .html-progress {
+      background: conic-gradient(#64a19d 95%, #ededed 0deg);
+    }
+
+    .css-progress {
+      background: conic-gradient(#64a19d 90%, #ededed 0deg);
+    }
+
+    .php-progress {
+      background: conic-gradient(#64a19d 80%, #ededed 0deg);
+    }
+
+    .sql-progress {
+      background: conic-gradient(#64a19d 85%, #ededed 0deg);
+    }
+
+    .mikrotik-progress {
+      background: conic-gradient(#64a19d 70%, #ededed 0deg);
+    }
+
+    .visual-basic-progress {
+      background: conic-gradient(#64a19d 65%, #ededed 0deg);
+    }
+
+    .hardware-progress {
+      background: conic-gradient(#64a19d 90%, #ededed 0deg);
+    }
+
+    /* Optional: Animation for progress bar on hover or scroll */
+    .circular-progress {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .circular-progress:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body id="page-top">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container px-4 px-lg-5">
+      <a class="navbar-brand" href="#page-top">Aal Alamsyah</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="masthead">
+    <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+      <div class="d-flex justify-content-center">
+        <div class="text-center">
+          <h1 class="mx-auto my-0 text-uppercase animate__animated animate__fadeInDown">Aal Alamsyah</h1>
+          <h2 class="text-white-50 mx-auto mt-2 mb-5 animate__animated animate__fadeInUp animate__delay-0-5s">Web
+            Developer & Tech Enthusiast</h2>
+          <a class="btn btn-primary animate__animated animate__zoomIn animate__delay-1s" href="#about">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="about-section text-center" id="about">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-lg-8" data-aos="fade-up">
+          <h2 class="text-white mb-4">About Me</h2>
+          <hr class="section-divider" />
+          <p class="text-white-50">
+            Starting in the retail sector, I honed my skills in operational management and customer service for years as
+            a Cashier and Head Cashier at Ria Busana. This experience shaped me into a detail-oriented, responsible, and
+            adaptable individual accustomed to dynamic environments.
+          </p>
+          <p class="text-white-50">
+            Over time, my interest in technology and digital solutions grew, leading me to delve into Web Development
+            and IT. This transition was strengthened by my role as EDP, where I am now responsible for managing
+            electronic data systems and IT infrastructure for several stores.
+          </p>
+          <p class="text-white-50">
+            I am an enthusiastic learner, always seeking ways to combine my practical experience with technical
+            expertise. I believe my unique background, from retail operations to IT, gives me a comprehensive
+            perspective in creating digital solutions that are not only functional but also relevant to business needs.
+            I actively contribute and share my personal projects on GitHub to continuously learn and collaborate.
+          </p>
+        </div>
+      </div>
+      <img class="img-fluid" src="assets/img/ipad.png" alt="..." data-aos="zoom-in" data-aos-delay="200" />
+    </div>
+  </section>
+
+  <section class="skills-section bg-light" id="skills">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-lg-10 text-center">
+          <hr class="section-divider" />
+          <h2 class="text-black mb-5" data-aos="fade-down">My Skills</h2>
+          <hr class="section-divider" />
+          <div class="row justify-content-center">
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="100">
+              <div class="skill-item">
+                <div class="circular-progress html-progress">
+                  <span class="progress-value">95%</span>
+                  <i class="fab fa-html5 progress-icon"></i>
+                </div>
+                <h5 class="skills-title">HTML</h5>
+                <p class="card-text text-muted">Website structuring</p>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="200">
+              <div class="skill-item">
+                <div class="circular-progress css-progress">
+                  <span class="progress-value">90%</span>
+                  <i class="fab fa-css3-alt progress-icon"></i>
+                </div>
+                <h5 class="skills-title">CSS</h5>
+                <p class="card-text text-muted">Design & styling</p>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="300">
+              <div class="skill-item">
+                <div class="circular-progress php-progress">
+                  <span class="progress-value">80%</span>
+                  <i class="fab fa-php progress-icon"></i>
+                </div>
+                <h5 class="skills-title">PHP</h5>
+                <p class="card-text text-muted">Backend development</p>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="400">
+              <div class="skill-item">
+                <div class="circular-progress sql-progress">
+                  <span class="progress-value">85%</span>
+                  <i class="fas fa-database progress-icon"></i>
+                </div>
+                <h5 class="skills-title">SQL Server</h5>
+                <p class="card-text text-muted">Database management</p>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="500">
+              <div class="skill-item">
+                <div class="circular-progress sql-progress">
+                  <span class="progress-value">85%</span>
+                  <i class="fas fa-database progress-icon"></i>
+                </div>
+                <h5 class="skills-title">PostgreSQL</h5>
+                <p class="card-text text-muted">Open-source database system</p>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="600">
+              <div class="skill-item">
+                <div class="circular-progress mikrotik-progress">
+                  <span class="progress-value">70%</span>
+                  <i class="fas fa-network-wired progress-icon"></i>
+                </div>
+                <h5 class="skills-title">Mikrotik</h5>
+                <p class="card-text text-muted">Network configuration</p>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="700">
+              <div class="skill-item">
+                <div class="circular-progress visual-basic-progress">
+                  <span class="progress-value">65%</span>
+                  <i class="fas fa-code progress-icon"></i>
+                </div>
+                <h5 class="skills-title">Visual Basic</h5>
+                <p class="card-text text-muted">Desktop application development</p>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="800">
+              <div class="skill-item">
+                <div class="circular-progress hardware-progress">
+                  <span class="progress-value">90%</span>
+                  <i class="fas fa-wrench progress-icon"></i>
+                </div>
+                <h5 class="skills-title">Hardware</h5>
+                <p class="card-text text-muted">Troubleshooting & repair</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="experience-section bg-white" id="experience">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-lg-10 text-center">
+          <hr class="section-divider" />
+          <h2 class="text-black mb-5" data-aos="fade-down">Experience</h2>
+          <hr class="section-divider" />
+          <ul class="timeline">
+            <li data-aos="fade-right">
+              <div class="timeline-image"><i class="fas fa-laptop-code fa-stack-1x fa-inverse"></i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>2025 - Present</h4>
+                  <h4 class="subheading">EDP (Electronic Data Processing) - Ria Busana Banjar Branch</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">
+                    Responsible for managing electronic data and IT systems for 3 stores (Banjar, Ciamis 1, Ciamis 2).
+                    Ensuring smooth operation of cashier systems and store networks.
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted" data-aos="fade-left">
+              <div class="timeline-image"><i class="fas fa-cash-register fa-stack-1x fa-inverse"></i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>2022 - 2025</h4>
+                  <h4 class="subheading">Head Cashier - Ria Busana Karawang Branch</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">
+                    Led a team of cashiers, managed daily cashier operations, financial reconciliation, and trained new
+                    cashiers. Ensured customer satisfaction at the cashier area.
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li data-aos="fade-right">
+              <div class="timeline-image"><i class="fas fa-coins fa-stack-1x fa-inverse"></i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>2018 - 2021</h4>
+                  <h4 class="subheading">Cashier - Ria Busana Sukabumi Branch</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">
+                    Processed customer payment transactions, managed cash, and assisted with product display. Directly
+                    interacted with customers to provide excellent service.
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="education-section text-center" id="education">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-lg-8">
+          <hr class="section-divider" />
+          <h2 class="text-black mb-5" data-aos="fade-down">Education</h2>
+          <hr class="section-divider" />
+          <div class="row justify-content-center">
+            <div class="col-md-6 mb-4" data-aos="flip-left" data-aos-delay="100">
+              <div class="card h-100 py-3">
+                <div class="card-body">
+                  <i class="fas fa-university text-primary mb-3"></i>
+                  <h5 class="card-title">Information Systems</h5>
+                  <p class="card-text text-black-50 mb-1">Universitas Terbuka</p>
+                  <p class="card-text text-black-50">2020 - Present</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4" data-aos="flip-right" data-aos-delay="200">
+              <div class="card h-100 py-3">
+                <div class="card-body">
+                  <i class="fas fa-school text-primary mb-3"></i>
+                  <h5 class="card-title">High School</h5>
+                  <p class="card-text text-black-50 mb-1">SMA Mardi Yuana Sukabumi City</p>
+                  <p class="card-text text-black-50">Graduated 2018</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects-section bg-light" id="projects">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-0 mb-4 mb-lg-5 align-items-center" data-aos="fade-up">
+        <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="..." />
+        </div>
+        <div class="col-xl-4 col-lg-5">
+          <div class="featured-text text-center text-lg-left">
+            <hr class="section-divider" />
+            <h4>Recent Projects</h4>
+            <hr class="section-divider" />
+            <p class="text-black-50 mb-0">My projects include profile website development, inventory management
+              applications, and PHP & Bootstrap-based report dashboards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="signup-section" id="signup">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5">
+        <div class="col-md-10 col-lg-8 mx-auto text-center" data-aos="zoom-in">
+          <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+          <hr class="section-divider" />
+          <h2 class="text-white mb-5">Get In Touch</h2>
+          <hr class="section-divider" />
+          <p class="text-white-50">You can reach me via email or social media below.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section bg-black">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5">
+        <div class="col-md-4 mb-3 mb-md-0" data-aos="fade-right" data-aos-delay="100">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Location</h4>
+              <hr class="my-4 mx-auto" />
+              <div class="small text-black-50">Sukabumi, West Java, Indonesia</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0" data-aos="fade-up" data-aos-delay="200">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Email</h4>
+              <hr class="my-4 mx-auto" />
+              <div class="small text-black-50"><a href="mailto:aalalamsyah23@gmail.com">aalalamsyah23@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0" data-aos="fade-left" data-aos-delay="300">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-mobile-alt text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Phone</h4>
+              <hr class="my-4 mx-auto" />
+              <div class="small text-black-50"><a href="tel:+628551230600">+62 8551 230600</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="social d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="400">
+        <a class="mx-2" href="https://github.com/aalalamsyah" target="_blank" rel="noopener noreferrer"
+          title="GitHub Profile"><i class="fab fa-github"></i></a>
+        <a class="mx-2" href="https://linkedin.com/in/aalalamsyah" target="_blank" rel="noopener noreferrer"
+          title="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+        <a class="mx-2" href="mailto:aalalamsyah23@gmail.com" title="Send an Email"><i class="fas fa-envelope"></i></a>
+        <a class="mx-2" href="https://wa.me/628551230600" target="_blank" rel="noopener noreferrer" title="WhatsApp"><i
+            class="fab fa-whatsapp"></i></a>
+        <a class="mx-2" href="https://instagram.com/aal_alamsyah" target="_blank" rel="noopener noreferrer"
+          title="Instagram Profile"><i class="fab fa-instagram"></i></a>
+        <a class="mx-2" href="https://x.com/aalalamsyah" target="_blank" rel="noopener noreferrer"
+          title="X (Twitter) Profile"><i class="fab fa-x-twitter"></i></a>
+        <a class="mx-2" href="https://www.tiktok.com/@aalhehehe" target="_blank" rel="noopener noreferrer"
+          title="TikTok Profile"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer bg-black small text-center text-white-50">
+    <div class="container px-4 px-lg-5">&copy; Aal Alamsyah 2025</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/scripts.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS library
+    AOS.init({
+      disable: 'mobile', // Disable animations on mobile devices
+      duration: 800, // Animation duration in milliseconds
+      easing: 'ease-out-quad', // Easing function for animations
+      once: true, // Only animate once as the element scrolls into view
+    });
+  </script>
+</body>
+
+</html>
