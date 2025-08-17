@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Cicilan Motor Koperasi</title>
+    <link rel="icon" href="https://png.pngtree.com/png-vector/20250426/ourmid/pngtree-red-motorcycle-motor-car-wash-bubble-clean-service-vector-illustrator-design-png-image_16104993.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        :root {
+            --primary-color: #4a00e0;
+            --secondary-color: #8e2de2;
+            --background-gradient: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+            --card-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #fd7e14;
+            --info-color: #007bff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card-container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .card {
+            border-radius: 20px;
+            overflow: hidden;
+            border: none;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 1.5rem 2rem;
+            border-bottom: none;
+            text-align: center;
+        }
+
+        .card-header h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .input-group-text {
+            background-color: #f1f3f5;
+            border: 1px solid #dee2e6;
+            border-right: none;
+            color: var(--primary-color);
+        }
+
+        .form-control {
+            border: 1px solid #dee2e6;
+            background-color: #fff;
+            padding-left: 10px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(142, 45, 226, 0.25);
+            border-color: var(--primary-color);
+        }
+
+        .results-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translateY(20px);
+            margin-top: 2rem;
+        }
+
+        .results-section.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .summary-card {
+            border: 2px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 20px;
+            background-color: #f9f4ff;
+        }
+
+        .summary-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .summary-item {
+            font-size: 1rem;
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-item-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .summary-label {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .summary-description {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        .summary-value {
+            font-weight: 600;
+            color: #343a40;
+            text-align: right;
+        }
+
+        /* Warna-warna baru */
+        .summary-value.color-info {
+            color: var(--info-color);
+        }
+
+        .summary-value.color-danger {
+            color: var(--danger-color);
+        }
+
+        .summary-value.color-warning {
+            color: var(--warning-color);
+        }
+
+        .summary-value.color-success {
+            font-size: 1.5rem;
+            color: var(--success-color);
+            font-weight: 700;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border: none;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(142, 45, 226, 0.3);
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-secondary {
+            transition: transform 0.2s;
+        }
+
+        .btn-outline-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .form-control[readonly] {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container card-container">
+        <div class="card shadow-lg">
+            <div class="card-header">
+                <h3><i class="fas fa-motorcycle me-2"></i> Simulasi Cicilan Motor Koperasi</h3>
+                <p class="mb-0">by al</p>
+            </div>
+
+            <div class="card-body p-4 p-md-5">
+                <form id="installment-form">
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="harga_unit" class="form-label">Harga Unit</label>
+                            <div class="input-group">
+                                <span class="input-group-text">Rp</span>
+                                <input type="text" name="harga_unit" id="harga_unit" class="form-control"
+                                    placeholder="cth: 25.000.000" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="asuransi" class="form-label">Biaya Asuransi</label>
+                            <div class="input-group">
+                                <span class="input-group-text">Rp</span>
+                                <input type="text" name="asuransi" id="asuransi" class="form-control" value="1.500.000"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="bunga_persen" class="form-label">Bunga per Bulan (%)</label>
+                            <div class="input-group">
+                                <input type="number" name="bunga_persen" id="bunga_persen" class="form-control"
+                                    value="1.0" step="0.1" readonly>
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="tenor" class="form-label">Tenor (bulan)</label>
+                            <div class="input-group">
+                                <input type="number" name="tenor" id="tenor" class="form-control" value="36" required>
+                                <span class="input-group-text"><i class="fas fa-hourglass-half"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <button type="submit" class="btn btn-primary px-4 py-2 me-2 flex-grow-1">
+                            <i class="fas fa-calculator me-2"></i> Hitung Cicilan
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary px-4 py-2" id="reset-button">
+                            <i class="fas fa-undo me-2"></i> Reset
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-5 results-section" id="results-container">
+                    <div class="summary-card mb-4" id="summary-section">
+                        <h5 class="text-center summary-title mb-4">Ringkasan Hasil Simulasi 📋</h5>
+                        <div class="summary-item">
+                            <div class="summary-item-text">
+                                <span class="summary-label">Harga Unit</span>
+                                <span class="summary-description">Harga motor.</span>
+                            </div>
+                            <span class="summary-value" id="result-harga-unit">Rp 0</span>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-item-text">
+                                <span class="summary-label">Biaya Asuransi</span>
+                                <span class="summary-description">Asuransi dealer.</span>
+                            </div>
+                            <span class="summary-value" id="result-asuransi">Rp 0</span>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-item-text">
+                                <span class="summary-label">Total Pinjaman Awal</span>
+                                <span class="summary-description">Harga Unit + Asuransi.</span>
+                            </div>
+                            <span class="summary-value" id="result-pinjaman-awal">Rp 0</span>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-item-text">
+                                <span class="summary-label">DP (10%)</span>
+                                <span class="summary-description">Uang muka awal (10% dari harga unit).</span>
+                            </div>
+                            <span class="summary-value" id="result-dp">Rp 0</span>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-item-text">
+                                <span class="summary-label">Total Hutang Pokok</span>
+                                <span class="summary-description">Jumlah yang akan dicicil (Pinjaman Awal &minus;
+                                    DP).</span>
+                            </div>
+                            <span class="summary-value color-info" id="result-hutang-total">Rp 0</span>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-item-text">
+                                <span class="summary-label">Tenor</span>
+                                <span class="summary-description">Jangka waktu cicilan.</span>
+                            </div>
+                            <span class="summary-value" id="result-tenor">0 bulan</span>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-item-text">
+                                <span class="summary-label">Total Bunga</span>
+                                <span class="summary-description">Total Hutang &times; Bunga % &times; Tenor.</span>
+                            </div>
+                            <span class="summary-value color-danger" id="result-bunga-total">Rp 0</span>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-item-text">
+                                <span class="summary-label text-warning fw-bold">Total Pinjaman</span>
+                                <span class="summary-description">Total Hutang + Bunga Total.</span>
+                            </div>
+                            <span class="summary-value color-warning" id="result-total-cicil">Rp 0</span>
+                        </div>
+                        <div class="summary-item" style="background-color: #e6f4e6; border-radius: 0 0 10px 10px;">
+                            <div class="summary-item-text">
+                                <span class="summary-label text-success fw-bold">Cicilan per Bulan</span>
+                                <span class="summary-description">Total Pinjaman &divide; Tenor.</span>
+                            </div>
+                            <span class="summary-value color-success" id="result-cicilan-bulan">Rp 0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('installment-form');
+            const resultsContainer = document.getElementById('results-container');
+            const resetButton = document.getElementById('reset-button');
+            const currencyInputs = document.querySelectorAll('#harga_unit, #asuransi');
+            const bungaInput = document.getElementById('bunga_persen');
+            const tenorInput = document.getElementById('tenor');
+
+            const formatNumber = (value) => {
+                return new Intl.NumberFormat('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                    minimumFractionDigits: 0
+                }).format(value);
+            };
+
+            const cleanNumber = (value) => {
+                if (!value) return 0;
+                let cleanedValue = value.toString().replace(/[^\d]/g, '');
+                return parseInt(cleanedValue, 10);
+            };
+
+            currencyInputs.forEach(input => {
+                input.addEventListener('keyup', function () {
+                    const cleanedValue = cleanNumber(this.value);
+                    this.value = formatNumber(cleanedValue).replace('Rp', '').trim();
+                });
+            });
+
+            const displayResults = (results) => {
+                document.getElementById('result-harga-unit').textContent = formatNumber(results.hargaUnit);
+                document.getElementById('result-asuransi').textContent = formatNumber(results.asuransi);
+                document.getElementById('result-pinjaman-awal').textContent = formatNumber(results.hargaUnit + results.asuransi);
+                document.getElementById('result-dp').textContent = formatNumber(results.dp);
+                document.getElementById('result-hutang-total').textContent = formatNumber(results.totalHutang);
+                document.getElementById('result-bunga-total').textContent = formatNumber(results.bungaTotal);
+                document.getElementById('result-total-cicil').textContent = formatNumber(results.totalPinjaman);
+                document.getElementById('result-tenor').textContent = `${results.tenor} bulan`;
+                document.getElementById('result-cicilan-bulan').textContent = formatNumber(results.cicilanBulan);
+
+                resultsContainer.classList.add('show');
+            };
+
+            const saveResultsToSession = (results) => {
+                sessionStorage.setItem('simulationResults', JSON.stringify(results));
+            };
+
+            const loadResultsFromSession = () => {
+                const results = sessionStorage.getItem('simulationResults');
+                if (results) {
+                    const parsedResults = JSON.parse(results);
+                    displayResults(parsedResults);
+                    document.getElementById('harga_unit').value = formatNumber(parsedResults.hargaUnit).replace('Rp', '').trim();
+                    document.getElementById('asuransi').value = formatNumber(parsedResults.asuransi).replace('Rp', '').trim();
+                    bungaInput.value = parsedResults.bungaPerBulan;
+                    tenorInput.value = parsedResults.tenor;
+
+                    document.getElementById('summary-section').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            };
+
+            loadResultsFromSession();
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const hargaUnit = cleanNumber(document.getElementById('harga_unit').value);
+                const asuransi = cleanNumber(document.getElementById('asuransi').value);
+                const pinjamanAwal = hargaUnit + asuransi;
+                const bungaPerBulan = parseFloat(bungaInput.value);
+                const tenor = parseInt(tenorInput.value, 10);
+
+                if (hargaUnit === 0 || isNaN(tenor)) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Form Belum Lengkap',
+                        text: 'Harap isi semua form terlebih dahulu!'
+                    });
+                    return;
+                }
+
+                if (tenor > 36) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Tenor Terlalu Lama',
+                        text: 'Maksimal tenor cicilan adalah 36 bulan.'
+                    });
+                    return;
+                }
+
+                if (tenor <= 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Tenor Tidak Valid',
+                        text: 'Tenor harus lebih dari 0 bulan.'
+                    });
+                    return;
+                }
+
+                const dp = hargaUnit * 0.10;
+                const totalHutang = hargaUnit + asuransi - dp;
+                const bungaTotal = (totalHutang * (bungaPerBulan / 100)) * tenor;
+                const totalPinjaman = totalHutang + bungaTotal;
+                const cicilanBulan = Math.ceil(totalPinjaman / tenor);
+
+                const results = {
+                    hargaUnit,
+                    asuransi,
+                    dp,
+                    totalHutang,
+                    bungaTotal,
+                    totalPinjaman,
+                    tenor,
+                    bungaPerBulan,
+                    cicilanBulan
+                };
+
+                displayResults(results);
+                saveResultsToSession(results);
+
+                document.getElementById('summary-section').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+
+            resetButton.addEventListener('click', function () {
+                form.reset();
+                resultsContainer.classList.remove('show');
+                sessionStorage.removeItem('simulationResults');
+                document.getElementById('asuransi').value = formatNumber(1500000).replace('Rp', '').trim();
+                bungaInput.value = '1.0';
+                tenorInput.value = '36';
+            });
+        });
+
+        window.onload = function () {
+            document.getElementById("harga_unit").focus();
+        };
+    </script>
+</body>
+
+</html>
+
