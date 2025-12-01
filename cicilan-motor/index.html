@@ -495,12 +495,10 @@
         }
 
         function handlePrint() {
-            // --- BAGIAN REVISI: VALIDASI HARGA UNIT ---
-            // Ambil nilai langsung dari elemen input untuk validasi real-time
+            // --- VALIDASI INPUT HARGA ---
             const inputHarga = document.getElementById('harga_unit').value;
             const hargaVal = cleanNumber(inputHarga);
 
-            // Jika nilai 0 atau kurang, munculkan SweetAlert
             if (hargaVal <= 0) {
                 Swal.fire({
                     icon: 'error',
@@ -508,19 +506,16 @@
                     text: 'Tolong isi harga Unit motor yang benar',
                     confirmButtonColor: '#2563eb'
                 });
-                return; // Hentikan proses
+                return;
             }
-            // -------------------------------------------
 
             const d = window.currentCalc;
-            // Pastikan data kalkulasi ada (jika input baru diubah, hitung ulang sebentar)
             if (!d) { calculate(); }
 
             // 1. CEK INPUT TIPE MOTOR
             const tipeMotor = document.getElementById('tipe_motor').value.trim();
 
             if (!tipeMotor) {
-                // Tampilkan Error SweetAlert jika kosong
                 Swal.fire({
                     icon: 'error',
                     title: 'Data Belum Lengkap',
@@ -530,7 +525,7 @@
                 return;
             }
 
-            // 2. JIKA ADA TIPE MOTOR, MINTA INPUT NAMA TOKO, NIK & NAMA
+            // 2. FORM INPUT DATA PEMOHON
             Swal.fire({
                 title: 'Data Permohonan',
                 html:
@@ -582,7 +577,6 @@
 
                     document.getElementById('bill_tipe_motor').innerText = tipeMotor;
 
-                    // Gunakan 'd' (window.currentCalc) untuk mengisi angka
                     document.getElementById('bill_harga').innerText = formatNumber(d.hargaUnit);
                     document.getElementById('bill_asuransi').innerText = formatNumber(d.asuransi);
                     document.getElementById('bill_pinjaman_awal').innerText = formatNumber(d.pinjamanAwal);
@@ -596,9 +590,77 @@
                     document.getElementById('bill_cicilan').innerText = formatRupiah(d.cicilanBulan);
                     document.getElementById('bill_tenor_text').innerText = `Selama ${d.tenor} Bulan`;
 
-                    setTimeout(() => {
-                        window.print();
-                    }, 300);
+                    // ============================================================
+                    // INTEGRASI GOOGLE APPS SCRIPT (SPREADSHEET) START
+                    // ============================================================
+
+                    // --- GANTI URL DI BAWAH INI DENGAN URL DEPLOY ANDA ---
+                    const scriptURL = 'https://script.google.com/macros/s/AKfycbxVZfKPlVgwtNHY2p41Gjbkxnsn5frktsC0bKw_7S6PYrHZoWVcIe1EsHCG3QZj3oUX/exec';
+
+                    // Tampilkan Loading
+                    Swal.fire({
+                        title: 'Memuat Data...',
+                        text: 'Mohon tunggu sebentar',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    // Data Object yang akan dikirim
+                    const dataKirim = {
+                        toko: info.toko.toUpperCase(),
+                        nik: info.nik,
+                        nama: info.nama.toUpperCase(),
+                        motor: tipeMotor,
+                        harga: d.hargaUnit,
+                        asuransi: d.asuransi,
+                        tenor: d.tenor,
+                        cicilan: d.cicilanBulan
+                    };
+
+                    // Proses Kirim via Fetch
+                    // Jika scriptURL belum diganti (masih default), langsung print saja biar tidak error
+                    // if (scriptURL === 'PASTE_URL_GOOGLE_SCRIPT_DISINI' || scriptURL === '') {
+                    //     console.warn('URL Google Script belum diisi!');
+                    //     Swal.close();
+                    //     setTimeout(() => window.print(), 500);
+                    //     return;
+                    // }
+
+                    fetch(scriptURL, {
+                        method: 'POST',
+                        body: JSON.stringify(dataKirim),
+                        mode: 'no-cors', // Mode ini wajib untuk Google Apps Script Web App public
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(() => {
+                            // Sukses (atau diasumsikan sukses karena no-cors)
+                            Swal.close();
+                            // Delay sedikit agar transisi halus sebelum window.print muncul
+                            setTimeout(() => {
+                                window.print();
+                            }, 500);
+                        })
+                        .catch(error => {
+                            console.error('Error kirim data:', error);
+                            // Jika error, tetap lanjut print agar operasional toko tidak terganggu
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Koneksi Database Gangguan',
+                                text: 'Data gagal tersimpan online, namun simulasi tetap akan dicetak.',
+                                timer: 2000,
+                                showConfirmButton: false
+                            }).then(() => {
+                                window.print();
+                            });
+                        });
+
+                    // ============================================================
+                    // INTEGRASI END
+                    // ============================================================
                 }
             });
         }
