@@ -4,471 +4,521 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulasi Cicilan Motor Koperasi</title>
-    <link rel="icon" href="https://png.pngtree.com/png-vector/20250426/ourmid/pngtree-red-motorcycle-motor-car-wash-bubble-clean-service-vector-illustrator-design-png-image_16104993.png" type="image/png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Simulasi Cicilan Motor - Ria Busana</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3203/3203061.png">
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: '#2563eb', // Royal Blue
+                        secondary: '#1e293b', // Slate 800
+                        accent: '#f59e0b', // Amber
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        :root {
-            --primary-color: #4a00e0;
-            --secondary-color: #8e2de2;
-            --background-gradient: linear-gradient(135deg, #fbc2eb, #a6c1ee);
-            --card-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-            --success-color: #28a745;
-            --danger-color: #dc3545;
-            --warning-color: #fd7e14;
-            --info-color: #007bff;
+        /* Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--background-gradient);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #2563eb;
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+            border: 2px solid white;
         }
 
-        .card-container {
+        input[type=range]::-webkit-slider-runnable-track {
             width: 100%;
-            max-width: 900px;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 99px;
         }
 
-        .card {
-            border-radius: 20px;
-            overflow: hidden;
-            border: none;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease;
+        /* --- MODERN PRINT STYLING (A4 FIXED) --- */
+        @media print {
+            @page {
+                margin: 0;
+                size: A4;
+            }
+
+            body {
+                background: white;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            nav,
+            main,
+            button,
+            .no-print {
+                display: none !important;
+            }
+
+            #print-area {
+                display: block !important;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                min-height: 100%;
+                z-index: 9999;
+                padding: 40px;
+                /* Padding kertas A4 */
+            }
         }
 
-        .card:hover {
-            transform: scale(1.01);
-        }
-
-        .card-header {
-            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
-            color: white;
-            padding: 1.5rem 2rem;
-            border-bottom: none;
-            text-align: center;
-        }
-
-        .card-header h3 {
-            margin: 0;
-            font-weight: 700;
-        }
-
-        .form-label {
-            font-weight: 600;
-            color: #333;
-        }
-
-        .input-group-text {
-            background-color: #f1f3f5;
-            border: 1px solid #dee2e6;
-            border-right: none;
-            color: var(--primary-color);
-        }
-
-        .form-control {
-            border: 1px solid #dee2e6;
-            background-color: #fff;
-            padding-left: 10px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .form-control:focus {
-            box-shadow: 0 0 0 0.25rem rgba(142, 45, 226, 0.25);
-            border-color: var(--primary-color);
-        }
-
-        .results-section {
+        #print-area {
             display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            transform: translateY(20px);
-            margin-top: 2rem;
-        }
-
-        .results-section.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .summary-card {
-            border: 2px solid var(--secondary-color);
-            border-radius: 15px;
-            padding: 20px;
-            background-color: #f9f4ff;
-        }
-
-        .summary-title {
-            color: var(--primary-color);
-            font-weight: 700;
-            text-align: center;
-        }
-
-        .summary-item {
-            font-size: 1rem;
-            padding: 12px 0;
-            border-bottom: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .summary-item:last-child {
-            border-bottom: none;
-        }
-
-        .summary-item-text {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-
-        .summary-label {
-            font-weight: 600;
-            color: #495057;
-        }
-
-        .summary-description {
-            font-size: 0.85rem;
-            color: #6c757d;
-        }
-
-        .summary-value {
-            font-weight: 600;
-            color: #343a40;
-            text-align: right;
-        }
-
-        /* Warna-warna baru */
-        .summary-value.color-info {
-            color: var(--info-color);
-        }
-
-        .summary-value.color-danger {
-            color: var(--danger-color);
-        }
-
-        .summary-value.color-warning {
-            color: var(--warning-color);
-        }
-
-        .summary-value.color-success {
-            font-size: 1.5rem;
-            color: var(--success-color);
-            font-weight: 700;
-        }
-
-        .btn-primary {
-            background-color: var(--secondary-color);
-            border: none;
-            transition: background-color 0.3s, transform 0.2s;
-            box-shadow: 0 4px 10px rgba(142, 45, 226, 0.3);
-            font-weight: 600;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline-secondary {
-            transition: transform 0.2s;
-        }
-
-        .btn-outline-secondary:hover {
-            transform: translateY(-2px);
-        }
-
-        .form-control[readonly] {
-            background-color: #e9ecef;
-            cursor: not-allowed;
         }
     </style>
 </head>
 
-<body>
-    <div class="container card-container">
-        <div class="card shadow-lg">
-            <div class="card-header">
-                <h3><i class="fas fa-motorcycle me-2"></i> Simulasi Cicilan Motor Koperasi</h3>
-                <p class="mb-0">by al</p>
+<body class="bg-slate-50 text-slate-900 min-h-screen font-sans flex flex-col">
+
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="bg-brand w-9 h-9 rounded-lg flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+                        <i class="fas fa-motorcycle text-sm"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-base font-bold text-slate-800 leading-tight">Koperasi Ria Busana</h1>
+                        <p class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Sistem Simulasi
+                            Kredit Motor</p>
+                    </div>
+                </div>
+                <div
+                    class="hidden md:flex items-center gap-2 text-sm text-slate-500 bg-slate-50 px-3 py-1.5 rounded-full border border-slate-200">
+                    <i class="far fa-calendar text-brand"></i>
+                    <span id="header_date" class="font-medium">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow py-8 px-4 sm:px-6 lg:px-8 flex justify-center items-start">
+        <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <div class="lg:col-span-7 flex flex-col gap-6">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 lg:p-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fas fa-sliders-h text-brand"></i> Parameter Pinjaman
+                        </h2>
+                        <button onclick="resetForm()"
+                            class="text-xs font-medium text-slate-500 hover:text-brand flex items-center gap-1 transition-colors px-2 py-1 rounded hover:bg-slate-100">
+                            <i class="fas fa-rotate-right"></i> Reset
+                        </button>
+                    </div>
+
+                    <div class="grid gap-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Harga OTR Kendaraan</label>
+                            <div class="relative group">
+                                <div
+                                    class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 font-bold">
+                                    Rp</div>
+                                <input type="text" id="harga_unit" onkeyup="formatCurrencyInput(this)"
+                                    class="block w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand font-bold text-slate-800 text-lg"
+                                    value="25.000.000">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Biaya Asuransi</label>
+                            <div class="relative group">
+                                <div
+                                    class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 font-bold">
+                                    Rp</div>
+                                <input type="text" id="asuransi" onkeyup="formatCurrencyInput(this)"
+                                    class="block w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand font-medium text-slate-700"
+                                    value="1.500.000">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Suku Bunga (Flat)</label>
+                                <div class="relative">
+                                    <input type="number" id="bunga_persen" value="1.0" readonly
+                                        class="block w-full pl-4 pr-12 py-3 bg-slate-100 border border-slate-200 rounded-xl text-slate-500 font-medium cursor-not-allowed">
+                                    <div
+                                        class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-xs font-bold text-slate-400">
+                                        %/BLN</div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Jangka Waktu</label>
+                                <div class="relative">
+                                    <input type="number" id="tenor_input" max="36" min="1" value="36"
+                                        oninput="syncTenor(this.value)"
+                                        class="block w-full pl-4 pr-16 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand font-bold text-slate-800">
+                                    <div
+                                        class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-xs font-bold text-slate-400">
+                                        BULAN</div>
+                                </div>
+                                <input type="range" id="tenor_range" min="6" max="36" step="6" value="36"
+                                    oninput="syncTenor(this.value)" class="w-full mt-3 accent-blue-600">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
+                            <i class="fas fa-chart-pie text-brand"></i> Komposisi Pembayaran
+                        </h3>
+                        <div class="bg-slate-100 rounded-lg p-3 border border-slate-200">
+                            <div class="flex justify-between text-xs mb-1 font-medium text-slate-600">
+                                <span>Pokok Hutang</span><span>Bunga</span>
+                            </div>
+                            <div class="w-full h-3 bg-slate-300 rounded-full overflow-hidden flex">
+                                <div id="bar_pokok" class="h-full bg-brand transition-all duration-500"
+                                    style="width: 70%"></div>
+                                <div id="bar_bunga" class="h-full bg-accent transition-all duration-500"
+                                    style="width: 30%"></div>
+                            </div>
+                            <div class="flex justify-between text-[10px] mt-2 text-slate-500">
+                                <span id="pct_pokok">70%</span><span id="pct_bunga">30%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-l border-slate-100 pl-0 md:pl-6">
+                        <h3 class="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
+                            <i class="fas fa-clipboard-check text-green-600"></i> Syarat Pengajuan
+                        </h3>
+                        <ul class="text-xs text-slate-500 space-y-2">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-0.5"></i>Terdaftar Anggota Koperasi Minimal 3
+                                Bulan
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-0.5"></i>Topup Saldo Minimal 10% dari Harga
+                                Unit
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-0.5"></i>
+                                <span class="text-red-500 font-bold">Bukan Fans MU</span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
             </div>
 
-            <div class="card-body p-4 p-md-5">
-                <form id="installment-form">
-                    <div class="row g-3 mb-4">
-                        <div class="col-md-6">
-                            <label for="harga_unit" class="form-label">Harga Unit</label>
-                            <div class="input-group">
-                                <span class="input-group-text">Rp</span>
-                                <input type="text" name="harga_unit" id="harga_unit" class="form-control"
-                                    placeholder="cth: 25.000.000" required>
+            <div class="lg:col-span-5">
+                <div class="sticky top-24">
+                    <div
+                        class="bg-slate-900 text-white rounded-2xl shadow-2xl overflow-hidden border border-slate-800 ring-1 ring-white/10">
+                        <div class="p-8 pb-6 bg-gradient-to-br from-slate-900 to-slate-800 relative">
+                            <div
+                                class="absolute top-0 right-0 w-32 h-32 bg-brand/10 rounded-full blur-3xl -mr-10 -mt-10">
+                            </div>
+                            <p class="text-slate-400 text-sm font-medium mb-1 relative z-10">Estimasi Cicilan per Bulan
+                            </p>
+                            <div class="flex items-baseline gap-2 relative z-10">
+                                <h2 class="text-5xl font-bold text-white tracking-tight" id="res_cicilan">0</h2>
+                                <span class="text-xl font-medium text-slate-500">IDR</span>
+                            </div>
+                            <div
+                                class="mt-4 inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full text-xs font-bold relative z-10">
+                                <i class="far fa-calendar-alt"></i>
+                                <span id="res_tenor_badge">36 Bulan</span>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="asuransi" class="form-label">Biaya Asuransi</label>
-                            <div class="input-group">
-                                <span class="input-group-text">Rp</span>
-                                <input type="text" name="asuransi" id="asuransi" class="form-control" value="1.500.000"
-                                    required>
+                        <div class="h-px bg-slate-800 mx-8"></div>
+                        <div class="p-8 pt-6 space-y-4 text-sm">
+                            <div class="flex justify-between items-center text-slate-400"><span>Harga Unit</span><span
+                                    class="text-slate-200 font-medium" id="res_harga_unit">Rp 0</span></div>
+                            <div class="flex justify-between items-center text-slate-400"><span>Biaya
+                                    Asuransi</span><span class="text-slate-200 font-medium" id="res_asuransi">Rp
+                                    0</span></div>
+                            <div
+                                class="my-3 py-3 border-y border-dashed border-slate-800 flex justify-between items-center">
+                                <span class="text-white font-semibold">Total Pinjaman Awal</span><span
+                                    class="text-white font-bold" id="res_pinjaman_awal">Rp 0</span>
                             </div>
-                        </div>
-                    </div>
+                            <div class="flex justify-between items-center text-slate-400"><span>DP (Uang Muka
+                                    10%)</span><span class="text-red-400 font-medium" id="res_dp">- Rp 0</span></div>
 
-                    <div class="row g-3 mb-4">
-                        <div class="col-md-6">
-                            <label for="bunga_persen" class="form-label">Bunga per Bulan (%)</label>
-                            <div class="input-group">
-                                <input type="number" name="bunga_persen" id="bunga_persen" class="form-control"
-                                    value="1.0" step="0.1" readonly>
-                                <span class="input-group-text">%</span>
+                            <div
+                                class="bg-slate-800/80 rounded-xl p-5 mt-6 border border-slate-700/50 space-y-3 relative overflow-hidden">
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-brand"></div>
+                                <div class="flex justify-between items-center"><span class="text-slate-400">Pokok
+                                        Hutang</span><span class="text-slate-200 font-mono" id="res_hutang_pokok">Rp
+                                        0</span></div>
+                                <div class="flex justify-between items-center"><span class="text-slate-400"
+                                        id="label_bunga_jasa">Jasa Bunga (36x)</span><span class="text-brand font-mono"
+                                        id="res_bunga_total">Rp 0</span></div>
+                                <div class="h-px bg-slate-700 my-2"></div>
+                                <div class="flex justify-between items-center"><span class="text-white font-bold">Total
+                                        Kewajiban</span><span class="text-white font-bold text-lg tracking-tight"
+                                        id="res_pinjaman_akhir">Rp 0</span></div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="tenor" class="form-label">Tenor (bulan)</label>
-                            <div class="input-group">
-                                <input type="number" name="tenor" id="tenor" class="form-control" value="36" required>
-                                <span class="input-group-text"><i class="fas fa-hourglass-half"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mt-4">
-                        <button type="submit" class="btn btn-primary px-4 py-2 me-2 flex-grow-1">
-                            <i class="fas fa-calculator me-2"></i> Hitung Cicilan
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary px-4 py-2" id="reset-button">
-                            <i class="fas fa-undo me-2"></i> Reset
-                        </button>
-                    </div>
-                </form>
-
-                <div class="mt-5 results-section" id="results-container">
-                    <div class="summary-card mb-4" id="summary-section">
-                        <h5 class="text-center summary-title mb-4">Ringkasan Hasil Simulasi 📋</h5>
-                        <div class="summary-item">
-                            <div class="summary-item-text">
-                                <span class="summary-label">Harga Unit</span>
-                                <span class="summary-description">Harga motor.</span>
-                            </div>
-                            <span class="summary-value" id="result-harga-unit">Rp 0</span>
-                        </div>
-                        <div class="summary-item">
-                            <div class="summary-item-text">
-                                <span class="summary-label">Biaya Asuransi</span>
-                                <span class="summary-description">Asuransi dealer.</span>
-                            </div>
-                            <span class="summary-value" id="result-asuransi">Rp 0</span>
-                        </div>
-                        <div class="summary-item">
-                            <div class="summary-item-text">
-                                <span class="summary-label">Total Pinjaman Awal</span>
-                                <span class="summary-description">Harga Unit + Asuransi.</span>
-                            </div>
-                            <span class="summary-value" id="result-pinjaman-awal">Rp 0</span>
-                        </div>
-                        <div class="summary-item">
-                            <div class="summary-item-text">
-                                <span class="summary-label">DP (10%)</span>
-                                <span class="summary-description">Uang muka awal (10% dari harga unit).</span>
-                            </div>
-                            <span class="summary-value" id="result-dp">Rp 0</span>
-                        </div>
-                        <div class="summary-item">
-                            <div class="summary-item-text">
-                                <span class="summary-label">Total Hutang Pokok</span>
-                                <span class="summary-description">Jumlah yang akan dicicil (Pinjaman Awal &minus;
-                                    DP).</span>
-                            </div>
-                            <span class="summary-value color-info" id="result-hutang-total">Rp 0</span>
-                        </div>
-                        <div class="summary-item">
-                            <div class="summary-item-text">
-                                <span class="summary-label">Tenor</span>
-                                <span class="summary-description">Jangka waktu cicilan.</span>
-                            </div>
-                            <span class="summary-value" id="result-tenor">0 bulan</span>
-                        </div>
-                        <div class="summary-item">
-                            <div class="summary-item-text">
-                                <span class="summary-label">Total Bunga</span>
-                                <span class="summary-description">Total Hutang &times; Bunga % &times; Tenor.</span>
-                            </div>
-                            <span class="summary-value color-danger" id="result-bunga-total">Rp 0</span>
-                        </div>
-                        <div class="summary-item">
-                            <div class="summary-item-text">
-                                <span class="summary-label text-warning fw-bold">Total Pinjaman</span>
-                                <span class="summary-description">Total Hutang + Bunga Total.</span>
-                            </div>
-                            <span class="summary-value color-warning" id="result-total-cicil">Rp 0</span>
-                        </div>
-                        <div class="summary-item" style="background-color: #e6f4e6; border-radius: 0 0 10px 10px;">
-                            <div class="summary-item-text">
-                                <span class="summary-label text-success fw-bold">Cicilan per Bulan</span>
-                                <span class="summary-description">Total Pinjaman &divide; Tenor.</span>
-                            </div>
-                            <span class="summary-value color-success" id="result-cicilan-bulan">Rp 0</span>
+                        <div class="p-4 bg-black/40 text-center border-t border-slate-800 backdrop-blur-sm">
+                            <button onclick="handlePrint()"
+                                class="w-full py-3.5 rounded-xl bg-brand hover:bg-blue-600 text-white font-bold transition-all shadow-lg shadow-blue-900/30 flex items-center justify-center gap-2 group active:scale-95">
+                                <i class="fas fa-print group-hover:scale-110 transition-transform"></i> Cetak Penawaran
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </main>
+
+    <div id="print-area">
+        <div class="flex justify-between items-end border-b-4 border-brand pb-6 mb-8">
+            <div class="flex items-center gap-4">
+                <div class="bg-brand text-white p-3 rounded-xl">
+                    <i class="fas fa-motorcycle text-3xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">KOPERASI RIA BUSANA</h1>
+                    <p class="text-sm text-slate-500 uppercase tracking-widest font-semibold mt-1">Divisi Kredit &
+                        Pembiayaan</p>
+                </div>
+            </div>
+            <div class="text-right text-xs text-slate-500 leading-relaxed">
+                <p>Cibinong, Bogor, Jawa Barat</p>
+                <p>Telp: 0855 1230 600</p>
+                <p class="text-brand font-semibold">https://hc.riaindahmandiri.com</p>
+            </div>
+        </div>
+
+        <div class="bg-slate-50 rounded-lg p-6 mb-8 border border-slate-100 flex justify-between items-start">
+            <div>
+                <p class="text-xs font-bold text-slate-400 uppercase mb-2">Dokumen Dibuat Untuk</p>
+                <h2 class="text-xl font-bold text-slate-800">Anggota / Calon Anggota</h2>
+                <p class="text-sm text-slate-500 mt-1 max-w-sm">Harap simpan dokumen ini sebagai bukti simulasi awal
+                    pengajuan kredit kendaraan bermotor.</p>
+            </div>
+            <div class="text-right">
+                <table class="text-sm">
+                    <tr>
+                        <td class="text-slate-400 font-medium pr-4 py-1">Nomor Referensi</td>
+                        <td class="text-slate-900 font-bold font-mono" id="bill_ref">SIM-000</td>
+                    </tr>
+                    <tr>
+                        <td class="text-slate-400 font-medium pr-4 py-1">Tanggal Cetak</td>
+                        <td class="text-slate-900 font-bold" id="bill_date">01 Jan 2025</td>
+                    </tr>
+                    <tr>
+                        <td class="text-slate-400 font-medium pr-4 py-1">Validasi</td>
+                        <td class="text-brand font-bold bg-blue-50 px-2 rounded">ESTIMASI AWAL</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="font-bold text-slate-800 mb-4 border-l-4 border-brand pl-3">Rincian Pembiayaan Unit</h3>
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="border-b-2 border-slate-800 text-slate-500 uppercase text-xs">
+                        <th class="py-3 text-left font-bold">Keterangan</th>
+                        <th class="py-3 text-right font-bold w-48">Jumlah (IDR)</th>
+                    </tr>
+                </thead>
+                <tbody class="text-slate-700 divide-y divide-slate-200">
+                    <tr>
+                        <td class="py-3">Harga OTR Kendaraan</td>
+                        <td class="py-3 text-right font-medium" id="bill_harga">0</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3">Biaya Administrasi & Asuransi</td>
+                        <td class="py-3 text-right font-medium" id="bill_asuransi">0</td>
+                    </tr>
+                    <tr class="bg-slate-50">
+                        <td class="py-3 font-bold text-slate-900">Total Nilai Pinjaman Awal</td>
+                        <td class="py-3 text-right font-bold text-slate-900" id="bill_pinjaman_awal">0</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 text-red-600">Dikurangi: Uang Muka (DP 10%)</td>
+                        <td class="py-3 text-right font-bold text-red-600" id="bill_dp">(0)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="border border-slate-300 rounded-xl overflow-hidden mb-12 flex">
+            <div class="w-1/2 bg-slate-50 p-6 border-r border-slate-300 flex flex-col justify-center">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-sm text-slate-500">Pokok Hutang</span>
+                    <span class="font-bold text-slate-800" id="bill_hutang_pokok">Rp 0</span>
+                </div>
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-sm text-slate-500" id="bill_label_bunga">Bunga Jasa (.. Bln)</span>
+                    <span class="font-bold text-slate-800" id="bill_bunga">Rp 0</span>
+                </div>
+                <div class="border-t border-slate-300 mt-2 pt-3 flex justify-between items-center">
+                    <span class="text-sm font-bold text-slate-700">Total Kewajiban</span>
+                    <span class="font-bold text-brand" id="bill_total_akhir">Rp 0</span>
+                </div>
+            </div>
+
+            <div class="w-1/2 bg-slate-900 p-6 flex flex-col justify-center items-center text-white text-center">
+                <p class="text-xs uppercase tracking-widest text-slate-400 mb-2">Angsuran per Bulan</p>
+                <h1 class="text-3xl font-bold mb-2" id="bill_cicilan">Rp 0</h1>
+                <div class="inline-block bg-white/20 px-4 py-1 rounded-full text-xs font-bold text-white"
+                    id="bill_tenor_text">
+                    Selama 36 Bulan
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-end mt-auto pt-4">
+            <div class="text-center w-48">
+                <p class="text-xs font-bold text-slate-400 uppercase mb-16">Disetujui Oleh,</p>
+                <div class="border-t border-slate-800 pt-2">
+                    <p class="font-bold text-sm text-slate-800">Store Manager</p>
+                </div>
+            </div>
+            <div class="text-center w-48">
+                <p class="text-xs font-bold text-slate-400 uppercase mb-16">Pemohon,</p>
+                <div class="border-t border-slate-800 pt-2">
+                    <p class="text-sm text-slate-500 italic">( Tanda Tangan Jelas )</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 text-[10px] text-center text-slate-400 border-t border-slate-100 pt-4">
+            Dokumen ini dicetak otomatis pada <span id="bill_footer_time"></span>.<br>
+            Simulasi ini bersifat perkiraan kasar dan tidak mengikat.<br>
+            Formulir ini hanya digunakan sebagai perhitungan estimasi awal yang ditujukan kepada Area Manager.<br>
+            Seluruh keputusan serta perhitungan pembiayaan yang berlaku akan mengikuti ketentuan dari
+            Koperasi Manajemen Ria Busana.
+        </div>
+
+
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('installment-form');
-            const resultsContainer = document.getElementById('results-container');
-            const resetButton = document.getElementById('reset-button');
-            const currencyInputs = document.querySelectorAll('#harga_unit, #asuransi');
-            const bungaInput = document.getElementById('bunga_persen');
-            const tenorInput = document.getElementById('tenor');
+        const formatRupiah = (number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(number);
+        const formatNumber = (number) => new Intl.NumberFormat('id-ID').format(number);
+        const cleanNumber = (value) => parseInt(value.toString().replace(/[^\d]/g, ''), 10) || 0;
 
-            const formatNumber = (value) => {
-                return new Intl.NumberFormat('id-ID', {
-                    style: 'currency',
-                    currency: 'IDR',
-                    minimumFractionDigits: 0
-                }).format(value);
-            };
+        function formatCurrencyInput(input) {
+            let val = cleanNumber(input.value);
+            input.value = val === 0 ? '' : formatNumber(val);
+            calculate();
+        }
 
-            const cleanNumber = (value) => {
-                if (!value) return 0;
-                let cleanedValue = value.toString().replace(/[^\d]/g, '');
-                return parseInt(cleanedValue, 10);
-            };
+        function syncTenor(val) {
+            document.getElementById('tenor_input').value = val;
+            document.getElementById('tenor_range').value = val;
+            calculate();
+        }
 
-            currencyInputs.forEach(input => {
-                input.addEventListener('keyup', function () {
-                    const cleanedValue = cleanNumber(this.value);
-                    this.value = formatNumber(cleanedValue).replace('Rp', '').trim();
-                });
-            });
+        function calculate() {
+            // Get Data
+            const hargaUnit = cleanNumber(document.getElementById('harga_unit').value);
+            const asuransi = cleanNumber(document.getElementById('asuransi').value);
+            const tenor = parseInt(document.getElementById('tenor_input').value) || 0;
+            const bungaPersen = 1.0;
 
-            const displayResults = (results) => {
-                document.getElementById('result-harga-unit').textContent = formatNumber(results.hargaUnit);
-                document.getElementById('result-asuransi').textContent = formatNumber(results.asuransi);
-                document.getElementById('result-pinjaman-awal').textContent = formatNumber(results.hargaUnit + results.asuransi);
-                document.getElementById('result-dp').textContent = formatNumber(results.dp);
-                document.getElementById('result-hutang-total').textContent = formatNumber(results.totalHutang);
-                document.getElementById('result-bunga-total').textContent = formatNumber(results.bungaTotal);
-                document.getElementById('result-total-cicil').textContent = formatNumber(results.totalPinjaman);
-                document.getElementById('result-tenor').textContent = `${results.tenor} bulan`;
-                document.getElementById('result-cicilan-bulan').textContent = formatNumber(results.cicilanBulan);
+            if (hargaUnit <= 0 || tenor <= 0) return;
 
-                resultsContainer.classList.add('show');
-            };
+            // Logic
+            const dp = hargaUnit * 0.10;
+            const pinjamanAwal = hargaUnit + asuransi;
+            const hutangPokok = pinjamanAwal - dp;
+            const bungaTotal = hutangPokok * (bungaPersen / 100) * tenor;
+            const pinjamanAkhir = hutangPokok + bungaTotal;
+            const cicilanBulan = Math.ceil(pinjamanAkhir / tenor);
 
-            const saveResultsToSession = (results) => {
-                sessionStorage.setItem('simulationResults', JSON.stringify(results));
-            };
+            // Update UI Web
+            document.getElementById('res_cicilan').innerText = formatNumber(cicilanBulan);
+            document.getElementById('res_tenor_badge').innerText = tenor + ' Bulan';
+            document.getElementById('res_harga_unit').innerText = formatRupiah(hargaUnit);
+            document.getElementById('res_asuransi').innerText = formatRupiah(asuransi);
+            document.getElementById('res_pinjaman_awal').innerText = formatRupiah(pinjamanAwal);
+            document.getElementById('res_dp').innerText = '- ' + formatRupiah(dp);
 
-            const loadResultsFromSession = () => {
-                const results = sessionStorage.getItem('simulationResults');
-                if (results) {
-                    const parsedResults = JSON.parse(results);
-                    displayResults(parsedResults);
-                    document.getElementById('harga_unit').value = formatNumber(parsedResults.hargaUnit).replace('Rp', '').trim();
-                    document.getElementById('asuransi').value = formatNumber(parsedResults.asuransi).replace('Rp', '').trim();
-                    bungaInput.value = parsedResults.bungaPerBulan;
-                    tenorInput.value = parsedResults.tenor;
+            document.getElementById('res_hutang_pokok').innerText = formatRupiah(hutangPokok);
+            document.getElementById('label_bunga_jasa').innerText = `Jasa Bunga (${tenor}x)`;
+            document.getElementById('res_bunga_total').innerText = formatRupiah(bungaTotal);
+            document.getElementById('res_pinjaman_akhir').innerText = formatRupiah(pinjamanAkhir);
 
-                    document.getElementById('summary-section').scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            };
+            // Update Chart
+            const totalKomponen = hutangPokok + bungaTotal;
+            const pctPokok = Math.round((hutangPokok / totalKomponen) * 100);
+            const pctBunga = 100 - pctPokok;
+            document.getElementById('bar_pokok').style.width = pctPokok + '%';
+            document.getElementById('bar_bunga').style.width = pctBunga + '%';
+            document.getElementById('pct_pokok').innerText = pctPokok + '%';
+            document.getElementById('pct_bunga').innerText = pctBunga + '%';
 
-            loadResultsFromSession();
+            window.currentCalc = { hargaUnit, asuransi, dp, pinjamanAwal, hutangPokok, bungaTotal, pinjamanAkhir, cicilanBulan, tenor };
+        }
 
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
+        function handlePrint() {
+            const d = window.currentCalc;
+            if (!d) return;
 
-                const hargaUnit = cleanNumber(document.getElementById('harga_unit').value);
-                const asuransi = cleanNumber(document.getElementById('asuransi').value);
-                const pinjamanAwal = hargaUnit + asuransi;
-                const bungaPerBulan = parseFloat(bungaInput.value);
-                const tenor = parseInt(tenorInput.value, 10);
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
 
-                if (hargaUnit === 0 || isNaN(tenor)) {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Form Belum Lengkap',
-                        text: 'Harap isi semua form terlebih dahulu!'
-                    });
-                    return;
-                }
+            document.getElementById('bill_ref').innerText = 'SIM-' + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('bill_date').innerText = dateStr;
+            document.getElementById('bill_footer_time').innerText = dateStr + ' ' + now.toLocaleTimeString('id-ID');
 
-                if (tenor > 36) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Tenor Terlalu Lama',
-                        text: 'Maksimal tenor cicilan adalah 36 bulan.'
-                    });
-                    return;
-                }
+            document.getElementById('bill_harga').innerText = formatNumber(d.hargaUnit);
+            document.getElementById('bill_asuransi').innerText = formatNumber(d.asuransi);
+            document.getElementById('bill_pinjaman_awal').innerText = formatNumber(d.pinjamanAwal);
+            document.getElementById('bill_dp').innerText = '(' + formatNumber(d.dp) + ')';
 
-                if (tenor <= 0) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Tenor Tidak Valid',
-                        text: 'Tenor harus lebih dari 0 bulan.'
-                    });
-                    return;
-                }
+            document.getElementById('bill_hutang_pokok').innerText = formatRupiah(d.hutangPokok);
+            document.getElementById('bill_label_bunga').innerText = `Bunga Jasa (${d.tenor} Bulan)`;
+            document.getElementById('bill_bunga').innerText = formatRupiah(d.bungaTotal);
+            document.getElementById('bill_total_akhir').innerText = formatRupiah(d.pinjamanAkhir);
 
-                const dp = hargaUnit * 0.10;
-                const totalHutang = hargaUnit + asuransi - dp;
-                const bungaTotal = (totalHutang * (bungaPerBulan / 100)) * tenor;
-                const totalPinjaman = totalHutang + bungaTotal;
-                const cicilanBulan = Math.ceil(totalPinjaman / tenor);
+            document.getElementById('bill_cicilan').innerText = formatRupiah(d.cicilanBulan);
+            document.getElementById('bill_tenor_text').innerText = `Selama ${d.tenor} Bulan`;
 
-                const results = {
-                    hargaUnit,
-                    asuransi,
-                    dp,
-                    totalHutang,
-                    bungaTotal,
-                    totalPinjaman,
-                    tenor,
-                    bungaPerBulan,
-                    cicilanBulan
-                };
+            window.print();
+        }
 
-                displayResults(results);
-                saveResultsToSession(results);
-
-                document.getElementById('summary-section').scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-
-            resetButton.addEventListener('click', function () {
-                form.reset();
-                resultsContainer.classList.remove('show');
-                sessionStorage.removeItem('simulationResults');
-                document.getElementById('asuransi').value = formatNumber(1500000).replace('Rp', '').trim();
-                bungaInput.value = '1.0';
-                tenorInput.value = '36';
-            });
-        });
+        function resetForm() {
+            document.getElementById('harga_unit').value = '25.000.000';
+            document.getElementById('asuransi').value = '1.500.000';
+            document.getElementById('tenor_input').value = 36;
+            document.getElementById('tenor_range').value = 36;
+            calculate();
+        }
 
         window.onload = function () {
-            document.getElementById("harga_unit").focus();
+            const now = new Date();
+            document.getElementById('header_date').innerText = now.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            calculate();
         };
+
+        document.getElementById('tenor_range').addEventListener('input', function () { syncTenor(this.value); });
     </script>
 </body>
 
 </html>
-
