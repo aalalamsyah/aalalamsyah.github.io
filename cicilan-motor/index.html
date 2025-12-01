@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -71,7 +72,9 @@
             nav,
             main,
             button,
-            .no-print {
+            .no-print,
+            .swal2-container {
+                /* Hide SweetAlert on print */
                 display: none !important;
             }
 
@@ -135,7 +138,8 @@
 
                     <div class="grid gap-5">
                         <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">Tipe / Merk Motor</label>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Tipe / Merk Motor <span
+                                    class="text-red-500">*</span></label>
                             <div class="relative group">
                                 <div
                                     class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
@@ -293,7 +297,7 @@
                         <div class="p-4 bg-black/40 text-center border-t border-slate-800 backdrop-blur-sm">
                             <button onclick="handlePrint()"
                                 class="w-full py-3.5 rounded-xl bg-brand hover:bg-blue-600 text-white font-bold transition-all shadow-lg shadow-blue-900/30 flex items-center justify-center gap-2 group active:scale-95">
-                                <i class="fas fa-print group-hover:scale-110 transition-transform"></i> Cetak Penawaran
+                                <i class="fas fa-print group-hover:scale-110 transition-transform"></i> Cetak Simulasi
                             </button>
                         </div>
                     </div>
@@ -316,7 +320,7 @@
             </div>
             <div class="text-right text-xs text-slate-500 leading-relaxed">
                 <p>Cibinong, Bogor, Jawa Barat</p>
-                <p>Telp: 0855 1230 600</p>
+                <p>16917</p>
                 <p class="text-brand font-semibold">https://hc.riaindahmandiri.com</p>
             </div>
         </div>
@@ -324,15 +328,18 @@
         <div class="bg-slate-50 rounded-lg p-6 mb-8 border border-slate-100 flex justify-between items-start">
             <div>
                 <p class="text-xs font-bold text-slate-400 uppercase mb-2">Dokumen Dibuat Untuk</p>
-                <h2 class="text-xl font-bold text-slate-800">Area Manager</h2>
-                <p class="text-sm text-slate-500 mt-1 max-w-sm">Sebagai bukti simulasi awal
-                    pengajuan kredit kendaraan bermotor.</p>
+                <h2 class="text-xl font-bold text-slate-800" id="bill_nama_karyawan">-</h2>
+                <div class="text-sm text-slate-500 mt-1 flex gap-2">
+                    <span class="font-semibold">NIK:</span>
+                    <span id="bill_nik_karyawan" class="font-mono text-slate-700">-</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-1 max-w-sm">Bukti simulasi awal pengajuan kredit.</p>
             </div>
             <div class="text-right">
                 <table class="text-sm">
                     <tr>
-                        <td class="text-slate-400 font-medium pr-4 py-1">Nomor Referensi</td>
-                        <td class="text-slate-900 font-bold font-mono" id="bill_ref">SIM-000</td>
+                        <td class="text-slate-400 font-medium pr-4 py-1">Nama Toko</td>
+                        <td class="text-slate-900 font-bold uppercase" id="bill_nama_toko">-</td>
                     </tr>
                     <tr>
                         <td class="text-slate-400 font-medium pr-4 py-1">Tanggal Cetak</td>
@@ -416,7 +423,7 @@
             <div class="text-center w-48">
                 <p class="text-xs font-bold text-slate-400 uppercase mb-16">Pemohon,</p>
                 <div class="border-t border-slate-800 pt-2">
-                    <p class="text-sm text-slate-500 italic">( Tanda Tangan Jelas )</p>
+                    <p class="text-sm text-slate-500 italic" id="bill_ttd_nama">( ........................ )</p>
                 </div>
             </div>
         </div>
@@ -488,40 +495,116 @@
         }
 
         function handlePrint() {
+            // --- BAGIAN REVISI: VALIDASI HARGA UNIT ---
+            // Ambil nilai langsung dari elemen input untuk validasi real-time
+            const inputHarga = document.getElementById('harga_unit').value;
+            const hargaVal = cleanNumber(inputHarga);
+
+            // Jika nilai 0 atau kurang, munculkan SweetAlert
+            if (hargaVal <= 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Data Tidak Valid',
+                    text: 'Tolong isi harga Unit motor yang benar',
+                    confirmButtonColor: '#2563eb'
+                });
+                return; // Hentikan proses
+            }
+            // -------------------------------------------
+
             const d = window.currentCalc;
-            if (!d) return;
+            // Pastikan data kalkulasi ada (jika input baru diubah, hitung ulang sebentar)
+            if (!d) { calculate(); }
 
-            // AMBIL TIPE MOTOR DARI INPUT
-            const tipeMotor = document.getElementById('tipe_motor').value || '-';
+            // 1. CEK INPUT TIPE MOTOR
+            const tipeMotor = document.getElementById('tipe_motor').value.trim();
 
-            const now = new Date();
-            const dateStr = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+            if (!tipeMotor) {
+                // Tampilkan Error SweetAlert jika kosong
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Data Belum Lengkap',
+                    text: 'Mohon isi Tipe / Merk Motor terlebih dahulu sebelum mencetak!',
+                    confirmButtonColor: '#2563eb'
+                });
+                return;
+            }
 
-            document.getElementById('bill_ref').innerText = 'SIM-' + Math.floor(1000 + Math.random() * 9000);
-            document.getElementById('bill_date').innerText = dateStr;
-            document.getElementById('bill_footer_time').innerText = dateStr + ' ' + now.toLocaleTimeString('id-ID');
+            // 2. JIKA ADA TIPE MOTOR, MINTA INPUT NAMA TOKO, NIK & NAMA
+            Swal.fire({
+                title: 'Data Permohonan',
+                html:
+                    '<div class="text-left mb-1 text-sm font-semibold text-slate-600">Nama Toko</div>' +
+                    '<input id="swal-toko" class="swal2-input" style="margin: 0 0 15px 0; width: 100%;" placeholder="Contoh: RB23 BANJAR">' +
 
-            // PASANG TIPE MOTOR KE BILL
-            document.getElementById('bill_tipe_motor').innerText = tipeMotor;
+                    '<div class="text-left mb-1 text-sm font-semibold text-slate-600">NIK Karyawan (12 Digit)</div>' +
+                    '<input id="swal-nik" class="swal2-input" type="text" maxlength="12" oninput="this.value = this.value.replace(/[^0-9]/g, \'\')" style="margin: 0 0 15px 0; width: 100%;" placeholder="Masukkan 12 Digit Angka">' +
 
-            document.getElementById('bill_harga').innerText = formatNumber(d.hargaUnit);
-            document.getElementById('bill_asuransi').innerText = formatNumber(d.asuransi);
-            document.getElementById('bill_pinjaman_awal').innerText = formatNumber(d.pinjamanAwal);
-            document.getElementById('bill_dp').innerText = '(' + formatNumber(d.dp) + ')';
+                    '<div class="text-left mb-1 text-sm font-semibold text-slate-600">Nama Lengkap</div>' +
+                    '<input id="swal-nama" class="swal2-input" style="margin: 0; width: 100%;" placeholder="Masukkan Nama Lengkap">',
+                focusConfirm: false,
+                showCancelButton: true,
+                confirmButtonText: 'Cetak Sekarang',
+                cancelButtonText: 'Batal',
+                confirmButtonColor: '#2563eb',
+                preConfirm: () => {
+                    const toko = document.getElementById('swal-toko').value;
+                    const nik = document.getElementById('swal-nik').value;
+                    const nama = document.getElementById('swal-nama').value;
 
-            document.getElementById('bill_hutang_pokok').innerText = formatRupiah(d.hutangPokok);
-            document.getElementById('bill_label_bunga').innerText = `Bunga Jasa (${d.tenor} Bulan)`;
-            document.getElementById('bill_bunga').innerText = formatRupiah(d.bungaTotal);
-            document.getElementById('bill_total_akhir').innerText = formatRupiah(d.pinjamanAkhir);
+                    if (!toko || !nik || !nama) {
+                        Swal.showValidationMessage('Harap lengkapi Nama Toko, NIK, dan Nama Karyawan');
+                        return false;
+                    }
 
-            document.getElementById('bill_cicilan').innerText = formatRupiah(d.cicilanBulan);
-            document.getElementById('bill_tenor_text').innerText = `Selama ${d.tenor} Bulan`;
+                    if (nik.length !== 12) {
+                        Swal.showValidationMessage('NIK harus terdiri dari 12 digit angka!');
+                        return false;
+                    }
 
-            window.print();
+                    return { toko: toko, nik: nik, nama: nama }
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const info = result.value;
+
+                    // 3. MASUKKAN DATA KE DALAM BILL (PRINT AREA)
+                    const now = new Date();
+                    const dateStr = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+
+                    document.getElementById('bill_nama_toko').innerText = info.toko.toUpperCase();
+                    document.getElementById('bill_date').innerText = dateStr;
+                    document.getElementById('bill_footer_time').innerText = dateStr + ' ' + now.toLocaleTimeString('id-ID');
+
+                    document.getElementById('bill_nama_karyawan').innerText = info.nama.toUpperCase();
+                    document.getElementById('bill_nik_karyawan').innerText = info.nik.toUpperCase();
+                    document.getElementById('bill_ttd_nama').innerText = `( ${info.nama} )`;
+
+                    document.getElementById('bill_tipe_motor').innerText = tipeMotor;
+
+                    // Gunakan 'd' (window.currentCalc) untuk mengisi angka
+                    document.getElementById('bill_harga').innerText = formatNumber(d.hargaUnit);
+                    document.getElementById('bill_asuransi').innerText = formatNumber(d.asuransi);
+                    document.getElementById('bill_pinjaman_awal').innerText = formatNumber(d.pinjamanAwal);
+                    document.getElementById('bill_dp').innerText = '(' + formatNumber(d.dp) + ')';
+
+                    document.getElementById('bill_hutang_pokok').innerText = formatRupiah(d.hutangPokok);
+                    document.getElementById('bill_label_bunga').innerText = `Bunga Jasa (${d.tenor} Bulan)`;
+                    document.getElementById('bill_bunga').innerText = formatRupiah(d.bungaTotal);
+                    document.getElementById('bill_total_akhir').innerText = formatRupiah(d.pinjamanAkhir);
+
+                    document.getElementById('bill_cicilan').innerText = formatRupiah(d.cicilanBulan);
+                    document.getElementById('bill_tenor_text').innerText = `Selama ${d.tenor} Bulan`;
+
+                    setTimeout(() => {
+                        window.print();
+                    }, 300);
+                }
+            });
         }
 
         function resetForm() {
-            document.getElementById('tipe_motor').value = ''; // Reset input tipe motor
+            document.getElementById('tipe_motor').value = '';
             document.getElementById('harga_unit').value = '28.500.000';
             document.getElementById('asuransi').value = '1.500.000';
             document.getElementById('tenor_input').value = 36;
@@ -540,4 +623,3 @@
 </body>
 
 </html>
-
