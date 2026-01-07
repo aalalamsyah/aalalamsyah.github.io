@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Profil Aal Alamsyah - Personal Profile">
+    <meta name="description"
+        content="Professional IT Consultant, Network Infrastructure, Hardware Maintenance, Security Systems, and Software Development - Aal Alamsyah">
     <meta name="author" content="Aal Alamsyah">
-    <title>Aal Alamsyah | Profile</title>
-    
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <title>Aal Alamsyah | IT Consultant & Software Engineer</title>
+
+    <link rel="shortcut icon" href="assets/favicon.ico?v=2" type="image/x-icon" />
+    <link rel="icon" href="assets/favicon.ico?v=2" type="image/x-icon" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <script src="https://use.fontawesome.com/releases/v6.5.2/js/all.js" crossorigin="anonymous"></script>
-
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
@@ -25,10 +29,9 @@
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#64a19d', // Warna original Anda (Teal)
+                        primary: '#64a19d',
                         secondary: '#4fd1c5',
                         dark: '#0f172a',
-                        card: 'rgba(30, 41, 59, 0.7)',
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
@@ -46,185 +49,591 @@
     </script>
 
     <style>
-        /* Background Gradient Mesh */
         body {
             background-color: #0f172a;
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            background-image:
+                radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+                radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
             color: #e2e8f0;
             overflow-x: hidden;
         }
 
-        /* Glassmorphism Card Effect */
+        .skill-tag {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(100, 161, 157, 0.15);
+            border-color: #64a19d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(100, 161, 157, 0.2);
+        }
+
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
         .glass-nav {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Hover Glow Effect */
-        .hover-glow:hover {
-            box-shadow: 0 0 20px rgba(100, 161, 157, 0.4);
-            border-color: rgba(100, 161, 157, 0.5);
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
         }
 
-        /* Custom Scrollbar */
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
         ::-webkit-scrollbar {
             width: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: #0f172a;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #334155;
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #64a19d;
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col">
+
+<body class="antialiased min-h-screen flex flex-col font-sans">
 
     <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-tighter text-white hover:text-primary transition-colors">
+            <a href="#page-top"
+                class="text-2xl font-bold tracking-tighter text-white hover:text-primary transition-colors">
                 Aal<span class="text-primary">.</span>
             </a>
-            
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
-                <a href="#about" class="hover:text-primary transition-colors">Tentang</a>
-                <a href="#skills" class="hover:text-primary transition-colors">Keahlian</a>
-                <a href="#contact" class="hover:text-primary transition-colors">Kontak</a>
+
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-primary transition-colors">Profile</a>
+                <a href="#services" class="hover:text-primary transition-colors">Solutions</a>
+                <a href="#workflow" class="hover:text-primary transition-colors">Process</a>
+                <a href="#projects" class="hover:text-primary transition-colors">Portfolio</a>
+                <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+                <a href="https://wa.me/628551230600" target="_blank"
+                    class="px-5 py-2 bg-primary text-white rounded-full hover:bg-emerald-600 transition-all shadow-lg shadow-primary/20 text-xs uppercase tracking-wider font-bold">
+                    <i class="fab fa-whatsapp mr-2"></i> Fast Response
+                </a>
             </div>
 
-            <button class="md:hidden text-white focus:outline-none" onclick="toggleMenu()">
+            <button class="md:hidden text-white focus:outline-none transition-transform active:scale-95"
+                onclick="toggleMenu()">
                 <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
-        
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 absolute w-full">
-            <div class="px-6 py-4 flex flex-col space-y-4 text-center">
-                <a href="#about" class="text-slate-300 hover:text-primary" onclick="toggleMenu()">Tentang</a>
-                <a href="#skills" class="text-slate-300 hover:text-primary" onclick="toggleMenu()">Keahlian</a>
-                <a href="#contact" class="text-slate-300 hover:text-primary" onclick="toggleMenu()">Kontak</a>
+
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 absolute w-full backdrop-blur-md">
+            <div class="px-6 py-6 flex flex-col space-y-4 text-center">
+                <a href="#about" class="text-slate-300 hover:text-primary font-medium"
+                    onclick="toggleMenu()">Profile</a>
+                <a href="#services" class="text-slate-300 hover:text-primary font-medium"
+                    onclick="toggleMenu()">Solutions</a>
+                <a href="#workflow" class="text-slate-300 hover:text-primary font-medium"
+                    onclick="toggleMenu()">Process</a>
+                <a href="#projects" class="text-slate-300 hover:text-primary font-medium"
+                    onclick="toggleMenu()">Portfolio</a>
+                <a href="#contact" class="text-slate-300 hover:text-primary font-medium"
+                    onclick="toggleMenu()">Contact</a>
             </div>
         </div>
     </nav>
 
-    <section id="about" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 flex items-center justify-center min-h-screen">
+    <section id="page-top" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 flex items-center justify-center min-h-screen">
         <div class="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-[100px] animate-pulse-slow"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] animate-pulse-slow" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] animate-pulse-slow"
+            style="animation-delay: 1s;"></div>
 
-        <div class="container mx-auto px-6 text-center z-10">
-            <div class="mb-6 inline-block animate-float">
-                <div class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full bg-gradient-to-tr from-slate-700 to-slate-600 p-1 shadow-2xl shadow-primary/20">
-                    <div class="w-full h-full rounded-full bg-slate-800 flex items-center justify-center overflow-hidden">
-                        <i class="fas fa-user text-5xl text-slate-400"></i>
-                        </div>
+        <div class="container mx-auto px-6 text-center z-10" data-aos="fade-up" data-aos-duration="1000">
+            <div class="mb-8 inline-block animate-float">
+                <div
+                    class="w-32 h-32 md:w-48 md:h-48 mx-auto rounded-full bg-gradient-to-tr from-slate-700 to-slate-600 p-1 shadow-2xl shadow-primary/20">
+                    <div
+                        class="w-full h-full rounded-full bg-slate-800 flex items-center justify-center overflow-hidden border-4 border-slate-800">
+                        <img src="assets/profile.jpg" alt="Aal Alamsyah" class="w-full h-full object-cover">
+                    </div>
                 </div>
             </div>
 
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-4 tracking-tight">
-                Halo, saya <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-300">Aal Alamsyah</span>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+                Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-300">Aal
+                    Alamsyah</span>
             </h1>
-            <p class="text-xl md:text-2xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Personal Profile & Digital Creator.
+
+            <h2 class="text-lg md:text-2xl text-slate-300 mb-8 h-8 font-mono">
+                <span id="typewriter" class="text-primary font-bold"></span><span class="cursor-blink">|</span>
+            </h2>
+
+            <p class="text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed text-base md:text-lg">
+                Menyediakan solusi <strong>Infrastruktur IT Terintegrasi</strong>. Spesialisasi pada <span
+                    class="text-slate-200">Network Engineering</span>,
+                <span class="text-slate-200">Hardware Maintenance</span>, dan <span class="text-slate-200">Custom
+                    Software Development</span> untuk menunjang efisiensi bisnis Anda.
             </p>
 
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#contact" class="px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-emerald-600 transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 transform hover:-translate-y-1">
-                    Hubungi Saya
+                <a href="#services"
+                    class="px-8 py-3.5 bg-primary text-white rounded-full font-bold hover:bg-emerald-600 transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 transform hover:-translate-y-1">
+                    Explore Solutions
                 </a>
-                <a href="#skills" class="px-8 py-3 glass-card text-white rounded-full font-semibold hover:bg-white/10 transition-all transform hover:-translate-y-1">
-                    Lihat Keahlian
+                <a href="#contact"
+                    class="px-8 py-3.5 glass-card text-white rounded-full font-bold hover:bg-white/10 transition-all transform hover:-translate-y-1">
+                    Free Consultation
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="py-20 relative">
+    <section id="services" class="py-24 relative bg-slate-900/30">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Keahlian & Minat</h2>
-                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Professional Services</h2>
+                <div class="w-20 h-1.5 bg-primary mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-400 max-w-2xl mx-auto">Solusi ekosistem teknologi yang komprehensif untuk
+                    Institusi, Enterprise, dan Residensial.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-2xl hover-glow transition-all duration-300 group">
-                    <div class="w-14 h-14 bg-slate-800/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-code text-2xl text-primary"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-primary/50 transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1531765408077-9a1f85f90df1?q=80&w=1170&auto=format&fit=crop"
+                            alt="Network Infrastructure"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Web Development</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Membangun antarmuka web yang modern, responsif, dan interaktif menggunakan teknologi terkini.
-                    </p>
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div
+                                class="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-400 mr-3">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Network Infrastructure</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            Perancangan dan implementasi topologi jaringan LAN/WLAN yang stabil dengan skalabilitas
+                            tinggi untuk lingkungan bisnis.
+                        </p>
+                        <ul class="text-slate-300 text-sm space-y-2 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i> Mikrotik
+                                Configuration & Routing</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i> Traffic
+                                Shaping & QoS Optimization</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i>
+                                Structured Cabling Management</li>
+                        </ul>
+                        <a href="https://wa.me/628551230600?text=Halo%20Mas%20Aal,%20saya%20tertarik%20konsultasi%20infrastruktur%20network."
+                            target="_blank"
+                            class="block text-center w-full py-2 border border-slate-600 rounded-lg text-slate-300 hover:bg-primary hover:text-white hover:border-primary transition-colors text-sm font-semibold">
+                            Consult Network Plan
+                        </a>
+                    </div>
                 </div>
 
-                <div class="glass-card p-8 rounded-2xl hover-glow transition-all duration-300 group">
-                    <div class="w-14 h-14 bg-slate-800/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-paintbrush text-2xl text-purple-400"></i>
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-primary/50 transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=1142&auto=format&fit=crop"
+                            alt="Hardware Engineering"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">On-Site Support
+                                Available</span>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Creative Design</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Menciptakan tata letak yang estetis dengan fokus pada pengalaman pengguna (UI/UX).
-                    </p>
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div
+                                class="w-10 h-10 bg-yellow-500/20 rounded-full flex items-center justify-center text-yellow-400 mr-3">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Hardware Engineering</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            Pemeliharaan perangkat keras dan optimalisasi performa workstation untuk memastikan
+                            produktivitas kerja yang maksimal.
+                        </p>
+                        <ul class="text-slate-300 text-sm space-y-2 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i> OS
+                                Deployment & Driver Integration</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i> Thermal
+                                Management & Preventive Maintenance</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i> Custom
+                                High-Performance Build</li>
+                        </ul>
+                        <a href="https://wa.me/628551230600?text=Halo%20Mas%20Aal,%20perangkat%20saya%20butuh%20maintenance."
+                            target="_blank"
+                            class="block text-center w-full py-2 border border-slate-600 rounded-lg text-slate-300 hover:bg-primary hover:text-white hover:border-primary transition-colors text-sm font-semibold">
+                            Request Maintenance
+                        </a>
+                    </div>
                 </div>
 
-                <div class="glass-card p-8 rounded-2xl hover-glow transition-all duration-300 group">
-                    <div class="w-14 h-14 bg-slate-800/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-rocket text-2xl text-orange-400"></i>
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-primary/50 transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1589935447067-5531094415d1?q=80&w=1170&auto=format&fit=crop"
+                            alt="Security Systems"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Digital Strategy</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Mengembangkan strategi digital untuk meningkatkan kehadiran online dan engagement.
-                    </p>
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div
+                                class="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center text-red-400 mr-3">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Surveillance Systems</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            Integrasi sistem keamanan digital 24/7 untuk proteksi aset berharga dengan teknologi
+                            pemantauan terkini.
+                        </p>
+                        <ul class="text-slate-300 text-sm space-y-2 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i> Remote
+                                Monitoring Integration (Mobile)</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i> IP
+                                Camera & Analog HD Installation</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i> System
+                                Diagnostics & Recovery</li>
+                        </ul>
+                        <a href="https://wa.me/628551230600?text=Halo%20Mas%20Aal,%20saya%20butuh%20solusi%20keamanan%20CCTV."
+                            target="_blank"
+                            class="block text-center w-full py-2 border border-slate-600 rounded-lg text-slate-300 hover:bg-primary hover:text-white hover:border-primary transition-colors text-sm font-semibold">
+                            Consult Security Plan
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-primary/50 transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop"
+                            alt="Software Development"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div
+                                class="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 mr-3">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Software Development</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            Transformasi digital melalui pengembangan aplikasi berbasis web dan sistem informasi bisnis
+                            yang modern.
+                        </p>
+                        <ul class="text-slate-300 text-sm space-y-2 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i>
+                                Corporate Website & Landing Page</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i> POS
+                                System & Inventory Integration</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i> Custom
+                                Business Information Systems</li>
+                        </ul>
+                        <a href="https://wa.me/628551230600?text=Halo%20Mas%20Aal,%20saya%20mau%20diskusi%20pembuatan%20website."
+                            target="_blank"
+                            class="block text-center w-full py-2 border border-slate-600 rounded-lg text-slate-300 hover:bg-primary hover:text-white hover:border-primary transition-colors text-sm font-semibold">
+                            Start Digitalization
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">How We Work</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Service Delivery Framework</h2>
+                <div class="w-20 h-1.5 bg-primary mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-400 max-w-2xl mx-auto">Standar operasional prosedur untuk menjamin kualitas hasil
+                    yang presisi dan akuntabel.</p>
+            </div>
+
+            <div class="relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-slate-800 -translate-y-1/2 z-0"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                    <div class="glass-card p-6 rounded-2xl text-center group hover:-translate-y-2 transition-transform duration-300"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div
+                            class="w-16 h-16 mx-auto bg-slate-800 rounded-full border-4 border-slate-900 flex items-center justify-center text-primary text-2xl font-bold mb-4 group-hover:border-primary transition-colors shadow-xl">
+                            1
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Discovery</h3>
+                        <p class="text-slate-400 text-sm">Konsultasi mendalam untuk memetakan kebutuhan teknis dan audit
+                            infrastruktur eksisting.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl text-center group hover:-translate-y-2 transition-transform duration-300"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <div
+                            class="w-16 h-16 mx-auto bg-slate-800 rounded-full border-4 border-slate-900 flex items-center justify-center text-secondary text-2xl font-bold mb-4 group-hover:border-secondary transition-colors shadow-xl">
+                            2
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Design</h3>
+                        <p class="text-slate-400 text-sm">Perancangan arsitektur sistem, topologi jaringan, atau
+                            wireframe aplikasi yang solutif.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl text-center group hover:-translate-y-2 transition-transform duration-300"
+                        data-aos="fade-up" data-aos-delay="300">
+                        <div
+                            class="w-16 h-16 mx-auto bg-slate-800 rounded-full border-4 border-slate-900 flex items-center justify-center text-blue-400 text-2xl font-bold mb-4 group-hover:border-blue-400 transition-colors shadow-xl">
+                            3
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Execution</h3>
+                        <p class="text-slate-400 text-sm">Implementasi solusi dengan standar industri, deployment
+                            bersih, dan optimasi performa.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl text-center group hover:-translate-y-2 transition-transform duration-300"
+                        data-aos="fade-up" data-aos-delay="400">
+                        <div
+                            class="w-16 h-16 mx-auto bg-slate-800 rounded-full border-4 border-slate-900 flex items-center justify-center text-green-400 text-2xl font-bold mb-4 group-hover:border-green-400 transition-colors shadow-xl">
+                            4
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Support</h3>
+                        <p class="text-slate-400 text-sm">Serah terima dokumentasi teknis, pelatihan user, dan dukungan
+                            maintenance berkala.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-20 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/80 pointer-events-none"></div>
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Terhubung Dengan Saya</h2>
+    <section id="projects" class="py-24 relative bg-slate-900/30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Featured Projects</h2>
+                <div class="w-20 h-1.5 bg-primary mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-400 max-w-2xl mx-auto">Portfolio pengembangan sistem aplikasi yang telah
+                    terimplementasi.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-slate-900/50 hover:bg-slate-900/0 transition-all"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-2">Smart Inventory System</h3>
+                        <p class="text-slate-400 text-sm line-clamp-2">Sistem manajemen stok terintegrasi dengan
+                            pelaporan opname real-time dan tracking logistik.</p>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-slate-900/50 hover:bg-slate-900/0 transition-all"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-2">Sales Analytics Dashboard</h3>
+                        <p class="text-slate-400 text-sm line-clamp-2">Platform visualisasi data penjualan dengan metrik
+                            pertumbuhan bisnis dan grafik interaktif.</p>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=800&auto=format&fit=crop"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-slate-900/50 hover:bg-slate-900/0 transition-all"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-2">Personal Branding Site</h3>
+                        <p class="text-slate-400 text-sm line-clamp-2">Website portofolio profesional dengan
+                            implementasi desain Modern Glassmorphism UI.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] -z-10"></div>
+
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-start">
+
+            <div data-aos="fade-right" data-aos-duration="800">
+                <div
+                    class="inline-flex items-center space-x-2 mb-4 px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700 w-fit">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="text-xs text-slate-300 font-medium">Open for Partnership</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+                    Professional <span class="text-primary">Summary</span>
+                </h2>
+                <p class="text-slate-300 leading-relaxed mb-8 text-justify text-sm md:text-base">
+                    Memiliki latar belakang kuat dalam operasional ritel yang bertransformasi menjadi praktisi Teknologi
+                    Informasi. Saat ini aktif sebagai <strong>IT EDP (Electronic Data Processing)</strong>, dengan fokus
+                    pada stabilitas infrastruktur jaringan, keamanan data, dan pengembangan sistem yang presisi untuk
+                    mendukung operasional bisnis yang <em>seamless</em>.
+                </p>
+
+                <div class="space-y-6">
+                    <div
+                        class="relative pl-8 border-l-2 border-slate-700 hover:border-primary transition-colors duration-300">
+                        <div
+                            class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-primary">
+                        </div>
+                        <h4 class="text-white font-bold text-lg">IT EDP Staff</h4>
+                        <span class="text-xs text-primary font-mono mb-1 block">2025 - Present</span>
+                        <p class="text-slate-400 text-sm">Ria Busana (Banjar & Ciamis) — Memimpin operasional IT
+                            infrastruktur, manajemen server, pemeliharaan sistem keamanan CCTV (Surveillance), dan
+                            integritas database harian.</p>
+                    </div>
+
+                    <div
+                        class="relative pl-8 border-l-2 border-slate-700 hover:border-primary transition-colors duration-300">
+                        <div
+                            class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-slate-500">
+                        </div>
+                        <h4 class="text-white font-bold text-lg">Head Cashier & Team Lead</h4>
+                        <span class="text-xs text-slate-500 font-mono mb-1 block">2022 - 2025</span>
+                        <p class="text-slate-400 text-sm">Ria Busana Karawang — Mengelola manajemen tim operasional,
+                            rekonsiliasi data transaksi finansial, dan pelaporan audit.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 md:p-8 rounded-2xl border-t border-slate-700/50" data-aos="fade-up"
+                data-aos-duration="800">
+                <h3 class="text-xl font-bold text-white mb-6 flex items-center">
+                    <i class="fas fa-layer-group text-primary mr-3"></i> Core Competencies
+                </h3>
+
+                <div class="mb-6">
+                    <h4 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">Network &
+                        Infrastructure</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="skill-tag px-3 py-1.5 rounded-lg text-slate-300 text-xs font-medium cursor-default">
+                            <i class="fas fa-network-wired text-green-400 mr-1.5"></i> Mikrotik RouterOS
+                        </span>
+                        <span
+                            class="skill-tag px-3 py-1.5 rounded-lg text-slate-300 text-xs font-medium cursor-default">
+                            <i class="fas fa-ethernet text-blue-400 mr-1.5"></i> Cabling Structure
+                        </span>
+                        <span
+                            class="skill-tag px-3 py-1.5 rounded-lg text-slate-300 text-xs font-medium cursor-default">
+                            <i class="fas fa-wifi text-cyan-400 mr-1.5"></i> Bandwidth Management
+                        </span>
+                        <span
+                            class="skill-tag px-3 py-1.5 rounded-lg text-slate-300 text-xs font-medium cursor-default">
+                            <i class="fas fa-server text-indigo-400 mr-1.5"></i> Server Maintenance
+                        </span>
+                        <span
+                            class="skill-tag px-3 py-1.5 rounded-lg text-slate-300 text-xs font-medium cursor-default">
+                            <i class="fas fa-shield-alt text-red-400 mr-1.5"></i> Surveillance Systems
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h4 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">Software Engineering
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="skill-tag px-3 py-1.5 rounded-lg text-slate-300 text-xs font-medium cursor-default">
+                            <i class="fab fa-php text-indigo-400 mr-1.5"></i> Backend Integration
+                        </span>
+                        <span
+                            class="skill-tag px-3 py-1.5 rounded-lg text-slate-300 text-xs font-medium cursor-default">
+                            <i class="fab fa-js text-yellow-300 mr-1.5"></i> Modern JavaScript
+                        </span>
+                        <span
+                            class="skill-tag px-3 py-1.5 rounded-lg text-slate-300 text-xs font-medium cursor-default">
+                            <i class="fas fa-wind text-cyan-300 mr-1.5"></i> Tailwind CSS
+                        </span>
+                        <span
+                            class="skill-tag px-3 py-1.5 rounded-lg text-slate-300 text-xs font-medium cursor-default">
+                            <i class="fas fa-laptop-code text-orange-500 mr-1.5"></i> Responsive UI/UX
+                        </span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">Professional Focus
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="skill-tag px-3 py-1.5 rounded-lg text-slate-300 text-xs font-medium cursor-default border-l-2 border-l-purple-500">
+                            IT Asset Management
+                        </span>
+                        <span
+                            class="skill-tag px-3 py-1.5 rounded-lg text-slate-300 text-xs font-medium cursor-default border-l-2 border-l-pink-500">
+                            Technical Troubleshooting
+                        </span>
+                        <span
+                            class="skill-tag px-3 py-1.5 rounded-lg text-slate-300 text-xs font-medium cursor-default border-l-2 border-l-orange-500">
+                            System Administration
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 relative">
+        <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Get in Touch</h2>
             <p class="text-slate-400 mb-12 max-w-xl mx-auto">
-                Jangan ragu untuk menghubungi saya melalui media sosial di bawah ini untuk kolaborasi atau sekadar menyapa.
+                Diskusikan kebutuhan infrastruktur IT atau pengembangan sistem Anda bersama saya.
             </p>
 
             <div class="flex flex-wrap justify-center gap-6">
-                <a href="https://wa.me/628551230600" target="_blank" rel="noopener noreferrer" 
-                   class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-300 hover:text-green-400 hover:scale-110 hover:border-green-500/50 transition-all duration-300 shadow-lg hover:shadow-green-500/20 group">
+                <a href="https://wa.me/628551230600"
+                    class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-400 hover:text-green-500 hover:scale-110 transition-all duration-300 shadow-lg"
+                    aria-label="WhatsApp">
                     <i class="fab fa-whatsapp text-3xl"></i>
                 </a>
-
-                <a href="https://instagram.com/aal_alamsyah" target="_blank" rel="noopener noreferrer"
-                   class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-300 hover:text-pink-500 hover:scale-110 hover:border-pink-500/50 transition-all duration-300 shadow-lg hover:shadow-pink-500/20 group">
-                    <i class="fab fa-instagram text-3xl"></i>
-                </a>
-
-                <a href="https://x.com/aalalamsyah" target="_blank" rel="noopener noreferrer"
-                   class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-300 hover:text-white hover:scale-110 hover:border-white/50 transition-all duration-300 shadow-lg hover:shadow-white/20 group">
-                    <i class="fab fa-x-twitter text-3xl"></i>
-                </a>
-
-                <a href="https://www.tiktok.com/@aalhehehe" target="_blank" rel="noopener noreferrer"
-                   class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-300 hover:text-cyan-400 hover:scale-110 hover:border-cyan-400/50 transition-all duration-300 shadow-lg hover:shadow-cyan-400/20 group">
-                    <i class="fab fa-tiktok text-3xl"></i>
-                </a>
-
-                <a href="mailto:email@example.com" class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-300 hover:text-yellow-400 hover:scale-110 hover:border-yellow-400/50 transition-all duration-300 shadow-lg hover:shadow-yellow-400/20 group">
+                <a href="mailto:aalalamsyah23@gmail.com"
+                    class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-400 hover:text-yellow-400 hover:scale-110 transition-all duration-300 shadow-lg"
+                    aria-label="Email">
                     <i class="fas fa-envelope text-3xl"></i>
+                </a>
+                <a href="https://linkedin.com/in/aalalamsyah"
+                    class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-400 hover:text-blue-500 hover:scale-110 transition-all duration-300 shadow-lg"
+                    aria-label="LinkedIn">
+                    <i class="fab fa-linkedin text-3xl"></i>
+                </a>
+                <a href="https://instagram.com/aal_alamsyah"
+                    class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-400 hover:text-pink-500 hover:scale-110 transition-all duration-300 shadow-lg"
+                    aria-label="Instagram">
+                    <i class="fab fa-instagram text-3xl"></i>
                 </a>
             </div>
         </div>
@@ -238,24 +647,54 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Init Animation Library
+        AOS.init({ duration: 1000, once: true, offset: 50 });
+
         // Toggle Mobile Menu
         function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
-        // Navbar Blur Effect on Scroll
-        window.addEventListener('scroll', function() {
+        // Navbar Scroll Blur Effect
+        window.addEventListener('scroll', function () {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
-                navbar.classList.add('shadow-lg');
-                navbar.classList.replace('bg-opacity-80', 'bg-opacity-95');
+                navbar.classList.add('shadow-lg', 'bg-slate-900/95');
+                navbar.classList.remove('bg-slate-900/85');
             } else {
-                navbar.classList.remove('shadow-lg');
-                navbar.classList.replace('bg-opacity-95', 'bg-opacity-80');
+                navbar.classList.remove('shadow-lg', 'bg-slate-900/95');
+                navbar.classList.add('bg-slate-900/85');
             }
         });
+
+        // Typewriter Effect (Teks Berganti)
+        const words = ["Hardware Maintenance", "Network Infrastructure", "Software Development"];
+        let i = 0;
+        let timer;
+
+        function typeWriter() {
+            const heading = document.getElementById("typewriter");
+            const word = words[i];
+            let j = 0;
+            let isDeleting = false;
+
+            function type() {
+                heading.innerHTML = word.substring(0, j);
+                if (isDeleting) {
+                    j--;
+                    if (j < 0) { isDeleting = false; i = (i + 1) % words.length; setTimeout(typeWriter, 500); return; }
+                } else {
+                    j++;
+                    if (j > word.length) { isDeleting = true; setTimeout(type, 2000); return; }
+                }
+                setTimeout(type, isDeleting ? 100 : 150);
+            }
+            type();
+        }
+        document.addEventListener('DOMContentLoaded', typeWriter);
     </script>
 </body>
+
 </html>
