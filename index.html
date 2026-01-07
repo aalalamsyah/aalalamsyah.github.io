@@ -1,744 +1,261 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id" class="scroll-smooth">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="Aal Alamsyah's personal profile" />
-  <meta name="author" content="Aal Alamsyah" />
-  <title>Aal Alamsyah | Profile</title>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-  <script src="https://use.fontawesome.com/releases/v6.5.2/js/all.js" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900" rel="stylesheet" />
-  <link href="css/styles.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Profil Aal Alamsyah - Personal Profile">
+    <meta name="author" content="Aal Alamsyah">
+    <title>Aal Alamsyah | Profile</title>
+    
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 
-  <style>
-    /* Custom styles for the skills section */
-    .skills-section .card {
-      border: none;
-      border-radius: 1rem;
-      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease-in-out;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    .skills-section .card:hover {
-      transform: translateY(-5px);
-    }
+    <script src="https://use.fontawesome.com/releases/v6.5.2/js/all.js" crossorigin="anonymous"></script>
 
-    .skills-section .card-body {
-      padding: 2rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#64a19d', // Warna original Anda (Teal)
+                        secondary: '#4fd1c5',
+                        dark: '#0f172a',
+                        card: 'rgba(30, 41, 59, 0.7)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-    .skills-section .card-body i {
-      font-size: 4rem;
-      /* Larger icon size */
-      margin-bottom: 1rem;
-      color: #64a19d;
-      /* Primary color */
-    }
+    <style>
+        /* Background Gradient Mesh */
+        body {
+            background-color: #0f172a;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
 
-    .skills-section .card-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #333;
-    }
+        /* Glassmorphism Card Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
 
-    .skills-section .card-text {
-      font-size: 0.9rem;
-      color: #6c757d;
-      text-align: center;
-    }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    /* Custom CSS for Timeline (Experience Section) */
-    .timeline {
-      list-style: none;
-      padding: 20px 0 20px;
-      position: relative;
-    }
+        /* Hover Glow Effect */
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(100, 161, 157, 0.4);
+            border-color: rgba(100, 161, 157, 0.5);
+        }
 
-    .timeline:before {
-      top: 0;
-      bottom: 0;
-      position: absolute;
-      content: " ";
-      width: 3px;
-      background-color: #e9ecef;
-      left: 50%;
-      margin-left: -1.5px;
-    }
-
-    .timeline>li {
-      margin-bottom: 20px;
-      position: relative;
-    }
-
-    .timeline>li:before,
-    .timeline>li:after {
-      content: " ";
-      display: table;
-    }
-
-    .timeline>li:after {
-      clear: both;
-    }
-
-    .timeline>li .timeline-panel {
-      width: 46%;
-      float: left;
-      border: 1px solid #dee2e6;
-      border-radius: 4px;
-      padding: 20px;
-      position: relative;
-      text-align: left;
-      /* Align text within panel */
-    }
-
-    .timeline>li .timeline-panel:before {
-      right: auto;
-      left: -15px;
-      border-right-width: 15px;
-      border-left-width: 0;
-    }
-
-    .timeline>li .timeline-panel:after {
-      right: auto;
-      left: -14px;
-      border-right-width: 14px;
-      border-left-width: 0;
-    }
-
-    .timeline>li .timeline-image {
-      left: 50%;
-      margin-left: -60px;
-      z-index: 100;
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border-radius: 100%;
-      text-align: center;
-      font-size: 2rem;
-      line-height: 120px;
-      /* Center icon vertically */
-      color: #fff;
-      background-color: #64a19d;
-      /* Primary color */
-      border: 7px solid #e9ecef;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .timeline>li.timeline-inverted>.timeline-panel {
-      float: right;
-    }
-
-    .timeline>li.timeline-inverted>.timeline-panel:before {
-      left: auto;
-      right: -15px;
-      border-left-width: 15px;
-      border-right-width: 0;
-    }
-
-    .timeline>li.timeline-inverted>.timeline-panel:after {
-      left: auto;
-      right: -14px;
-      border-left-width: 14px;
-      border-right-width: 0;
-    }
-
-    .timeline-heading h4 {
-      font-size: 1.5em;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .timeline-heading h4.subheading {
-      font-size: 1.1em;
-      font-weight: normal;
-      color: #6c757d;
-    }
-
-    .timeline-body>p {
-      margin-bottom: 0;
-      line-height: 1.75;
-    }
-
-    /* Custom styles for education section cards */
-    .education-section .card {
-      border: none;
-      border-radius: 1rem;
-      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .education-section .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .education-section .card-body i {
-      font-size: 3.5rem;
-      /* Larger icon size */
-      color: #64a19d;
-      /* Primary color */
-    }
-
-    /* Styling for social icons hover effect */
-    .social a i {
-      transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-    }
-
-    .social a:hover i {
-      transform: scale(1.2);
-      color: #64a19d !important;
-      /* Use primary color on hover */
-    }
-
-    /* Animation for navbar (optional, can also be set in scripts.js) */
-    #mainNav.navbar-scrolled {
-      animation: fadeInDown 0.5s ease-out;
-      /* Animation for fading in from top */
-    }
-
-    /* Style for the horizontal rule (pembatas) */
-    .section-divider {
-      border: 0;
-      height: 1px;
-      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(100, 161, 157, 0.75), rgba(0, 0, 0, 0));
-      margin: 3rem auto;
-      /* Add margin above and below */
-      width: 50%;
-      /* Adjust width as needed */
-    }
-
-    /* Media Queries for responsiveness */
-    @media (max-width: 768px) {
-      .timeline:before {
-        left: 18px;
-      }
-
-      .timeline>li .timeline-panel {
-        width: auto;
-        float: right;
-        margin-left: 50px;
-      }
-
-      .timeline>li .timeline-panel:before {
-        border-left-width: 0;
-        border-right-width: 15px;
-        left: -15px;
-      }
-
-      .timeline>li .timeline-panel:after {
-        border-left-width: 0;
-        border-right-width: 14px;
-        left: -14px;
-      }
-
-      .timeline>li .timeline-image {
-        left: 0;
-        margin-left: 0;
-        width: 80px;
-        height: 80px;
-        line-height: 80px;
-        font-size: 1.5rem;
-      }
-
-      .timeline>li.timeline-inverted>.timeline-panel {
-        float: right;
-      }
-
-      .timeline>li.timeline-inverted>.timeline-panel:before {
-        left: -15px;
-        border-right-width: 15px;
-        border-left-width: 0;
-      }
-
-      .timeline>li.timeline-inverted>.timeline-panel:after {
-        left: -14px;
-        border-right-width: 14px;
-        border-left-width: 0;
-      }
-    }
-
-    /* Custom styles for circular progress bars in skills section */
-    .skills-section {
-      text-align: center;
-    }
-
-    .skill-item {
-      position: relative;
-      margin-bottom: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .circular-progress {
-      position: relative;
-      height: 150px;
-      /* Adjust size as needed */
-      width: 150px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .circular-progress:before {
-      content: "";
-      position: absolute;
-      height: 120px;
-      width: 120px;
-      background-color: #fff;
-      border-radius: 50%;
-    }
-
-    .circular-progress .progress-value {
-      position: relative;
-      font-size: 2rem;
-      font-weight: 600;
-      color: #64a19d;
-      /* Primary color */
-      z-index: 1;
-    }
-
-    .circular-progress .progress-icon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 3rem;
-      /* Icon size */
-      color: #64a19d;
-      /* Primary color */
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .circular-progress:hover .progress-value {
-      opacity: 0;
-    }
-
-    .circular-progress:hover .progress-icon {
-      opacity: 1;
-    }
-
-    .skills-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #333;
-    }
-
-    /* Specific colors for each skill for more visual flair */
-    .html-progress {
-      background: conic-gradient(#64a19d 95%, #ededed 0deg);
-    }
-
-    .css-progress {
-      background: conic-gradient(#64a19d 90%, #ededed 0deg);
-    }
-
-    .php-progress {
-      background: conic-gradient(#64a19d 80%, #ededed 0deg);
-    }
-
-    .sql-progress {
-      background: conic-gradient(#64a19d 85%, #ededed 0deg);
-    }
-
-    .mikrotik-progress {
-      background: conic-gradient(#64a19d 70%, #ededed 0deg);
-    }
-
-    .visual-basic-progress {
-      background: conic-gradient(#64a19d 65%, #ededed 0deg);
-    }
-
-    .hardware-progress {
-      background: conic-gradient(#64a19d 90%, #ededed 0deg);
-    }
-
-    /* Optional: Animation for progress bar on hover or scroll */
-    .circular-progress {
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .circular-progress:hover {
-      transform: scale(1.1);
-    }
-  </style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64a19d;
+        }
+    </style>
 </head>
+<body class="antialiased min-h-screen flex flex-col">
 
-<body id="page-top">
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container px-4 px-lg-5">
-      <a class="navbar-brand" href="#page-top">Aal Alamsyah</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-        aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-tighter text-white hover:text-primary transition-colors">
+                Aal<span class="text-primary">.</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-primary transition-colors">Tentang</a>
+                <a href="#skills" class="hover:text-primary transition-colors">Keahlian</a>
+                <a href="#contact" class="hover:text-primary transition-colors">Kontak</a>
+            </div>
 
-  <header class="masthead">
-    <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-      <div class="d-flex justify-content-center">
-        <div class="text-center">
-          <h1 class="mx-auto my-0 text-uppercase animate__animated animate__fadeInDown">Aal Alamsyah</h1>
-          <h2 class="text-white-50 mx-auto mt-2 mb-5 animate__animated animate__fadeInUp animate__delay-0-5s">Web
-            Developer & Tech Enthusiast</h2>
-          <a class="btn btn-primary animate__animated animate__zoomIn animate__delay-1s" href="#about">Learn More</a>
+            <button class="md:hidden text-white focus:outline-none" onclick="toggleMenu()">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
         </div>
-      </div>
-    </div>
-  </header>
-
-  <section class="about-section text-center" id="about">
-    <div class="container px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-lg-8" data-aos="fade-up">
-          <h2 class="text-white mb-4">About Me</h2>
-          <hr class="section-divider" />
-          <p class="text-white-50">
-            Starting in the retail sector, I honed my skills in operational management and customer service for years as
-            a Cashier and Head Cashier at Ria Busana. This experience shaped me into a detail-oriented, responsible, and
-            adaptable individual accustomed to dynamic environments.
-          </p>
-          <p class="text-white-50">
-            Over time, my interest in technology and digital solutions grew, leading me to delve into Web Development
-            and IT. This transition was strengthened by my role as EDP, where I am now responsible for managing
-            electronic data systems and IT infrastructure for several stores.
-          </p>
-          <p class="text-white-50">
-            I am an enthusiastic learner, always seeking ways to combine my practical experience with technical
-            expertise. I believe my unique background, from retail operations to IT, gives me a comprehensive
-            perspective in creating digital solutions that are not only functional but also relevant to business needs.
-            I actively contribute and share my personal projects on GitHub to continuously learn and collaborate.
-          </p>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 absolute w-full">
+            <div class="px-6 py-4 flex flex-col space-y-4 text-center">
+                <a href="#about" class="text-slate-300 hover:text-primary" onclick="toggleMenu()">Tentang</a>
+                <a href="#skills" class="text-slate-300 hover:text-primary" onclick="toggleMenu()">Keahlian</a>
+                <a href="#contact" class="text-slate-300 hover:text-primary" onclick="toggleMenu()">Kontak</a>
+            </div>
         </div>
-      </div>
-      <img class="img-fluid" src="assets/img/ipad.png" alt="..." data-aos="zoom-in" data-aos-delay="200" />
-    </div>
-  </section>
+    </nav>
 
-  <section class="skills-section bg-light" id="skills">
-    <div class="container px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-lg-10 text-center">
-          <hr class="section-divider" />
-          <h2 class="text-black mb-5" data-aos="fade-down">My Skills</h2>
-          <hr class="section-divider" />
-          <div class="row justify-content-center">
+    <section id="about" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 flex items-center justify-center min-h-screen">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-[100px] animate-pulse-slow"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] animate-pulse-slow" style="animation-delay: 1s;"></div>
 
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="100">
-              <div class="skill-item">
-                <div class="circular-progress html-progress">
-                  <span class="progress-value">95%</span>
-                  <i class="fab fa-html5 progress-icon"></i>
+        <div class="container mx-auto px-6 text-center z-10">
+            <div class="mb-6 inline-block animate-float">
+                <div class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full bg-gradient-to-tr from-slate-700 to-slate-600 p-1 shadow-2xl shadow-primary/20">
+                    <div class="w-full h-full rounded-full bg-slate-800 flex items-center justify-center overflow-hidden">
+                        <i class="fas fa-user text-5xl text-slate-400"></i>
+                        </div>
                 </div>
-                <h5 class="skills-title">HTML</h5>
-                <p class="card-text text-muted">Website structuring</p>
-              </div>
             </div>
 
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="200">
-              <div class="skill-item">
-                <div class="circular-progress css-progress">
-                  <span class="progress-value">90%</span>
-                  <i class="fab fa-css3-alt progress-icon"></i>
-                </div>
-                <h5 class="skills-title">CSS</h5>
-                <p class="card-text text-muted">Design & styling</p>
-              </div>
-            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-4 tracking-tight">
+                Halo, saya <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-300">Aal Alamsyah</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Personal Profile & Digital Creator.
+            </p>
 
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="300">
-              <div class="skill-item">
-                <div class="circular-progress php-progress">
-                  <span class="progress-value">80%</span>
-                  <i class="fab fa-php progress-icon"></i>
-                </div>
-                <h5 class="skills-title">PHP</h5>
-                <p class="card-text text-muted">Backend development</p>
-              </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#contact" class="px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-emerald-600 transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 transform hover:-translate-y-1">
+                    Hubungi Saya
+                </a>
+                <a href="#skills" class="px-8 py-3 glass-card text-white rounded-full font-semibold hover:bg-white/10 transition-all transform hover:-translate-y-1">
+                    Lihat Keahlian
+                </a>
             </div>
-
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="400">
-              <div class="skill-item">
-                <div class="circular-progress sql-progress">
-                  <span class="progress-value">85%</span>
-                  <i class="fas fa-database progress-icon"></i>
-                </div>
-                <h5 class="skills-title">SQL Server</h5>
-                <p class="card-text text-muted">Database management</p>
-              </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="500">
-              <div class="skill-item">
-                <div class="circular-progress sql-progress">
-                  <span class="progress-value">85%</span>
-                  <i class="fas fa-database progress-icon"></i>
-                </div>
-                <h5 class="skills-title">PostgreSQL</h5>
-                <p class="card-text text-muted">Open-source database system</p>
-              </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="600">
-              <div class="skill-item">
-                <div class="circular-progress mikrotik-progress">
-                  <span class="progress-value">70%</span>
-                  <i class="fas fa-network-wired progress-icon"></i>
-                </div>
-                <h5 class="skills-title">Mikrotik</h5>
-                <p class="card-text text-muted">Network configuration</p>
-              </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="700">
-              <div class="skill-item">
-                <div class="circular-progress visual-basic-progress">
-                  <span class="progress-value">65%</span>
-                  <i class="fas fa-code progress-icon"></i>
-                </div>
-                <h5 class="skills-title">Visual Basic</h5>
-                <p class="card-text text-muted">Desktop application development</p>
-              </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="800">
-              <div class="skill-item">
-                <div class="circular-progress hardware-progress">
-                  <span class="progress-value">90%</span>
-                  <i class="fas fa-wrench progress-icon"></i>
-                </div>
-                <h5 class="skills-title">Hardware</h5>
-                <p class="card-text text-muted">Troubleshooting & repair</p>
-              </div>
-            </div>
-
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="experience-section bg-white" id="experience">
-    <div class="container px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-lg-10 text-center">
-          <hr class="section-divider" />
-          <h2 class="text-black mb-5" data-aos="fade-down">Experience</h2>
-          <hr class="section-divider" />
-          <ul class="timeline">
-            <li data-aos="fade-right">
-              <div class="timeline-image"><i class="fas fa-laptop-code fa-stack-1x fa-inverse"></i></div>
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h4>2025 - Present</h4>
-                  <h4 class="subheading">EDP (Electronic Data Processing) - Ria Busana Banjar Branch</h4>
-                </div>
-                <div class="timeline-body">
-                  <p class="text-muted">
-                    Responsible for managing electronic data and IT systems for 3 stores (Banjar, Ciamis 1, Ciamis 2).
-                    Ensuring smooth operation of cashier systems and store networks.
-                  </p>
-                </div>
-              </div>
-            </li>
-            <li class="timeline-inverted" data-aos="fade-left">
-              <div class="timeline-image"><i class="fas fa-cash-register fa-stack-1x fa-inverse"></i></div>
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h4>2022 - 2025</h4>
-                  <h4 class="subheading">Head Cashier - Ria Busana Karawang Branch</h4>
-                </div>
-                <div class="timeline-body">
-                  <p class="text-muted">
-                    Led a team of cashiers, managed daily cashier operations, financial reconciliation, and trained new
-                    cashiers. Ensured customer satisfaction at the cashier area.
-                  </p>
-                </div>
-              </div>
-            </li>
-            <li data-aos="fade-right">
-              <div class="timeline-image"><i class="fas fa-coins fa-stack-1x fa-inverse"></i></div>
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h4>2018 - 2021</h4>
-                  <h4 class="subheading">Cashier - Ria Busana Sukabumi Branch</h4>
-                </div>
-                <div class="timeline-body">
-                  <p class="text-muted">
-                    Processed customer payment transactions, managed cash, and assisted with product display. Directly
-                    interacted with customers to provide excellent service.
-                  </p>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="education-section text-center" id="education">
-    <div class="container px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-lg-8">
-          <hr class="section-divider" />
-          <h2 class="text-black mb-5" data-aos="fade-down">Education</h2>
-          <hr class="section-divider" />
-          <div class="row justify-content-center">
-            <div class="col-md-6 mb-4" data-aos="flip-left" data-aos-delay="100">
-              <div class="card h-100 py-3">
-                <div class="card-body">
-                  <i class="fas fa-university text-primary mb-3"></i>
-                  <h5 class="card-title">Information Systems</h5>
-                  <p class="card-text text-black-50 mb-1">Universitas Terbuka</p>
-                  <p class="card-text text-black-50">2020 - Present</p>
-                </div>
-              </div>
+    <section id="skills" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Keahlian & Minat</h2>
+                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
             </div>
-            <div class="col-md-6 mb-4" data-aos="flip-right" data-aos-delay="200">
-              <div class="card h-100 py-3">
-                <div class="card-body">
-                  <i class="fas fa-school text-primary mb-3"></i>
-                  <h5 class="card-title">High School</h5>
-                  <p class="card-text text-black-50 mb-1">SMA Mardi Yuana Sukabumi City</p>
-                  <p class="card-text text-black-50">Graduated 2018</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl hover-glow transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-slate-800/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-code text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Web Development</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Membangun antarmuka web yang modern, responsif, dan interaktif menggunakan teknologi terkini.
+                    </p>
                 </div>
-              </div>
+
+                <div class="glass-card p-8 rounded-2xl hover-glow transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-slate-800/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-paintbrush text-2xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Creative Design</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Menciptakan tata letak yang estetis dengan fokus pada pengalaman pengguna (UI/UX).
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl hover-glow transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-slate-800/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-rocket text-2xl text-orange-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Digital Strategy</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Mengembangkan strategi digital untuk meningkatkan kehadiran online dan engagement.
+                    </p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="projects-section bg-light" id="projects">
-    <div class="container px-4 px-lg-5">
-      <div class="row gx-0 mb-4 mb-lg-5 align-items-center" data-aos="fade-up">
-        <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="..." />
-        </div>
-        <div class="col-xl-4 col-lg-5">
-          <div class="featured-text text-center text-lg-left">
-            <hr class="section-divider" />
-            <h4>Recent Projects</h4>
-            <hr class="section-divider" />
-            <p class="text-black-50 mb-0">My projects include profile website development, inventory management
-              applications, and PHP & Bootstrap-based report dashboards.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <section id="contact" class="py-20 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/80 pointer-events-none"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Terhubung Dengan Saya</h2>
+            <p class="text-slate-400 mb-12 max-w-xl mx-auto">
+                Jangan ragu untuk menghubungi saya melalui media sosial di bawah ini untuk kolaborasi atau sekadar menyapa.
+            </p>
 
-  <section class="signup-section" id="signup">
-    <div class="container px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5">
-        <div class="col-md-10 col-lg-8 mx-auto text-center" data-aos="zoom-in">
-          <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-          <hr class="section-divider" />
-          <h2 class="text-white mb-5">Get In Touch</h2>
-          <hr class="section-divider" />
-          <p class="text-white-50">You can reach me via email or social media below.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="https://wa.me/628551230600" target="_blank" rel="noopener noreferrer" 
+                   class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-300 hover:text-green-400 hover:scale-110 hover:border-green-500/50 transition-all duration-300 shadow-lg hover:shadow-green-500/20 group">
+                    <i class="fab fa-whatsapp text-3xl"></i>
+                </a>
 
-  <section class="contact-section bg-black">
-    <div class="container px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5">
-        <div class="col-md-4 mb-3 mb-md-0" data-aos="fade-right" data-aos-delay="100">
-          <div class="card py-4 h-100">
-            <div class="card-body text-center">
-              <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-              <h4 class="text-uppercase m-0">Location</h4>
-              <hr class="my-4 mx-auto" />
-              <div class="small text-black-50">Sukabumi, West Java, Indonesia</div>
+                <a href="https://instagram.com/aal_alamsyah" target="_blank" rel="noopener noreferrer"
+                   class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-300 hover:text-pink-500 hover:scale-110 hover:border-pink-500/50 transition-all duration-300 shadow-lg hover:shadow-pink-500/20 group">
+                    <i class="fab fa-instagram text-3xl"></i>
+                </a>
+
+                <a href="https://x.com/aalalamsyah" target="_blank" rel="noopener noreferrer"
+                   class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-300 hover:text-white hover:scale-110 hover:border-white/50 transition-all duration-300 shadow-lg hover:shadow-white/20 group">
+                    <i class="fab fa-x-twitter text-3xl"></i>
+                </a>
+
+                <a href="https://www.tiktok.com/@aalhehehe" target="_blank" rel="noopener noreferrer"
+                   class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-300 hover:text-cyan-400 hover:scale-110 hover:border-cyan-400/50 transition-all duration-300 shadow-lg hover:shadow-cyan-400/20 group">
+                    <i class="fab fa-tiktok text-3xl"></i>
+                </a>
+
+                <a href="mailto:email@example.com" class="glass-card w-16 h-16 flex items-center justify-center rounded-2xl text-slate-300 hover:text-yellow-400 hover:scale-110 hover:border-yellow-400/50 transition-all duration-300 shadow-lg hover:shadow-yellow-400/20 group">
+                    <i class="fas fa-envelope text-3xl"></i>
+                </a>
             </div>
-          </div>
         </div>
-        <div class="col-md-4 mb-3 mb-md-0" data-aos="fade-up" data-aos-delay="200">
-          <div class="card py-4 h-100">
-            <div class="card-body text-center">
-              <i class="fas fa-envelope text-primary mb-2"></i>
-              <h4 class="text-uppercase m-0">Email</h4>
-              <hr class="my-4 mx-auto" />
-              <div class="small text-black-50"><a href="mailto:aalalamsyah23@gmail.com">aalalamsyah23@gmail.com</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-3 mb-md-0" data-aos="fade-left" data-aos-delay="300">
-          <div class="card py-4 h-100">
-            <div class="card-body text-center">
-              <i class="fas fa-mobile-alt text-primary mb-2"></i>
-              <h4 class="text-uppercase m-0">Phone</h4>
-              <hr class="my-4 mx-auto" />
-              <div class="small text-black-50"><a href="tel:+628551230600">+62 8551 230600</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="social d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="400">
-        <a class="mx-2" href="https://github.com/aalalamsyah" target="_blank" rel="noopener noreferrer"
-          title="GitHub Profile"><i class="fab fa-github"></i></a>
-        <a class="mx-2" href="https://linkedin.com/in/aalalamsyah" target="_blank" rel="noopener noreferrer"
-          title="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
-        <a class="mx-2" href="mailto:aalalamsyah23@gmail.com" title="Send an Email"><i class="fas fa-envelope"></i></a>
-        <a class="mx-2" href="https://wa.me/628551230600" target="_blank" rel="noopener noreferrer" title="WhatsApp"><i
-            class="fab fa-whatsapp"></i></a>
-        <a class="mx-2" href="https://instagram.com/aal_alamsyah" target="_blank" rel="noopener noreferrer"
-          title="Instagram Profile"><i class="fab fa-instagram"></i></a>
-        <a class="mx-2" href="https://x.com/aalalamsyah" target="_blank" rel="noopener noreferrer"
-          title="X (Twitter) Profile"><i class="fab fa-x-twitter"></i></a>
-        <a class="mx-2" href="https://www.tiktok.com/@aalhehehe" target="_blank" rel="noopener noreferrer"
-          title="TikTok Profile"><i class="fab fa-tiktok"></i></a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <footer class="footer bg-black small text-center text-white-50">
-    <div class="container px-4 px-lg-5">&copy; Aal Alamsyah 2025</div>
-  </footer>
+    <footer class="py-8 border-t border-slate-800 bg-slate-950 mt-auto">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-slate-500 text-sm">
+                &copy; 2025 <span class="text-slate-300 font-semibold">Aal Alamsyah</span>. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/scripts.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    // Initialize AOS library
-    AOS.init({
-      disable: 'mobile', // Disable animations on mobile devices
-      duration: 800, // Animation duration in milliseconds
-      easing: 'ease-out-quad', // Easing function for animations
-      once: true, // Only animate once as the element scrolls into view
-    });
-  </script>
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Navbar Blur Effect on Scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.replace('bg-opacity-80', 'bg-opacity-95');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.replace('bg-opacity-95', 'bg-opacity-80');
+            }
+        });
+    </script>
 </body>
-
 </html>
