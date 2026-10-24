@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aal Alamsyah.J.P — IT Support, Jaringan, Database &amp; Sistem Retail</title>
+<meta name="description" content="Profil Aal Alamsyah J.P, IT Support berpengalaman di lingkungan retail: jaringan, server, database, POS, dan CCTV. Berbasis di Sukabumi, Jawa Barat.">
+<meta name="theme-color" content="#0f1b2d">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖥️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f6f9; --surface:#ffffff; --ink:#0f1b2d; --muted:#53627a;
+  --line:#dde3ec; --accent:#0b7f70; --accent-ink:#ffffff; --soft:#e3f3f0; --warn:#c98a0a;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0b1422;--surface:#121e31;--ink:#e8eef7;--muted:#9aa9c0;--line:#223149;--accent:#3cc9b4;--accent-ink:#06211d;--soft:#12302f;--warn:#e8b54a}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+
+/* nav */
+header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font:700 1.05rem var(--display);text-decoration:none;letter-spacing:-.01em}
+nav{display:flex;gap:1.25rem;font-size:.92rem}
+nav a{text-decoration:none;color:var(--muted);padding:.25rem 0;border-bottom:2px solid transparent}
+nav a:hover{color:var(--ink);border-color:var(--accent)}
+@media (max-width:640px){nav a:nth-child(n+4){display:none}nav{gap:1rem}}
+
+/* hero */
+.hero{padding:4rem 0 3.5rem;display:grid;gap:2.5rem;grid-template-columns:1.25fr 1fr;align-items:center}
+@media (max-width:860px){.hero{grid-template-columns:1fr;padding:2.5rem 0}}
+.hero h1{font:700 clamp(2.4rem,6vw,4.1rem)/1.02 var(--display);letter-spacing:-.035em}
+.role{margin-top:1rem;font-size:1.12rem;color:var(--muted);max-width:34ch}
+.role strong{color:var(--ink);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
+.btn{display:inline-block;padding:.7rem 1.15rem;border-radius:8px;font-weight:600;font-size:.95rem;text-decoration:none;border:1.5px solid var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn:not(.primary):hover{background:var(--surface)}
+.loc{margin-top:1.4rem;font-size:.92rem;color:var(--muted)}
+
+/* status panel: the memorable element */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.panel h2{font:600 .95rem var(--body);padding:.9rem 1.15rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.panel h2 span{font-weight:400;color:var(--muted);font-size:.85rem}
+.panel ul{list-style:none}
+.panel li{display:flex;align-items:center;gap:.8rem;padding:.72rem 1.15rem;border-bottom:1px solid var(--line);font-size:.97rem}
+.panel li:last-child{border-bottom:0}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;box-shadow:0 0 0 4px var(--soft)}
+.panel li small{margin-left:auto;color:var(--muted);font-size:.82rem;text-align:right}
+@media (prefers-reduced-motion:no-preference){.dot{animation:pulse 2.4s ease-in-out infinite}.panel li:nth-child(2) .dot{animation-delay:.4s}.panel li:nth-child(3) .dot{animation-delay:.8s}.panel li:nth-child(4) .dot{animation-delay:1.2s}.panel li:nth-child(5) .dot{animation-delay:1.6s}}
+@keyframes pulse{50%{box-shadow:0 0 0 7px transparent}}
+
+/* sections */
+section{padding:3.2rem 0;border-top:1px solid var(--line)}
+.sec{display:grid;grid-template-columns:200px 1fr;gap:2rem}
+@media (max-width:760px){.sec{grid-template-columns:1fr;gap:1rem}}
+.sec>h2{font:700 1.5rem var(--display);letter-spacing:-.02em;position:sticky;top:80px;align-self:start}
+@media (max-width:760px){.sec>h2{position:static}}
+.lead{font-size:1.12rem;max-width:62ch}
+
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
+.chip{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.35rem .85rem;font-size:.9rem}
+
+/* timeline */
+.job{position:relative;padding-left:1.6rem;border-left:2px solid var(--accent)}
+.job::before{content:"";position:absolute;left:-7px;top:.35rem;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--bg)}
+.job h3{font:700 1.25rem var(--display);letter-spacing:-.015em}
+.job .meta{color:var(--muted);font-size:.95rem;margin:.2rem 0 1rem}
+.job ul{padding-left:1.1rem;display:grid;gap:.55rem;max-width:68ch}
+.job li::marker{color:var(--accent)}
+
+/* skills */
+dl.skills{display:grid;gap:0;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+dl.skills div{display:grid;grid-template-columns:190px 1fr;gap:1rem;padding:1rem 1.25rem;border-bottom:1px solid var(--line)}
+dl.skills div:last-child{border-bottom:0}
+dl.skills dt{font-weight:600}
+dl.skills dd{color:var(--muted)}
+@media (max-width:640px){dl.skills div{grid-template-columns:1fr;gap:.2rem}}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.9rem 2rem;list-style:none}
+.cols li{padding-left:1.4rem;position:relative}
+.cols li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+
+.edu h3{font:700 1.15rem var(--display)}
+.edu p{color:var(--muted)}
+
+/* contact */
+.contact{background:var(--ink);color:var(--bg);border-radius:18px;padding:2.4rem;display:grid;gap:1.4rem}
+.contact h2{font:700 clamp(1.6rem,4vw,2.2rem)/1.1 var(--display);letter-spacing:-.025em}
+.contact p{opacity:.8;max-width:48ch}
+.contact .btn{border-color:var(--bg);color:var(--bg)}
+.contact .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.contact .btn:not(.primary):hover{background:rgba(255,255,255,.1)}
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.88rem}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#atas">Aal Alamsyah.J.P</a>
+    <nav aria-label="Navigasi utama">
+      <a href="#tentang">Tentang</a>
+      <a href="#pengalaman">Pengalaman</a>
+      <a href="#keahlian">Keahlian</a>
+      <a href="#pendidikan">Pendidikan</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<main id="atas" class="wrap">
+
+  <div class="hero">
+    <div>
+      <h1>Aal Alamsyah.J.P</h1>
+      <p class="role"><strong>IT Support</strong> yang menjaga jaringan, server, database, dan sistem POS toko retail tetap berjalan stabil.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:aalalamsyah23@gmail.com">Kirim email</a>
+        <a class="btn" href="https://wa.me/628551230600" target="_blank" rel="noopener">Chat WhatsApp</a>
+      </div>
+      <p class="loc">Sukabumi, Jawa Barat</p>
+    </div>
+
+    <aside class="panel" aria-label="Cakupan pekerjaan">
+      <h2>Cakupan kerja <span>8+ tahun di retail</span></h2>
+      <ul>
+        <li><span class="dot"></span>Sistem POS <small>kasir &amp; inventori</small></li>
+        <li><span class="dot"></span>Jaringan <small>LAN, Wi-Fi, MikroTik</small></li>
+        <li><span class="dot"></span>Database <small>SQL Server, PostgreSQL</small></li>
+        <li><span class="dot"></span>Server <small>monitoring &amp; maintenance</small></li>
+        <li><span class="dot"></span>CCTV <small>instalasi &amp; perawatan</small></li>
+      </ul>
+    </aside>
+  </div>
+
+  <section id="tentang">
+    <div class="sec">
+      <h2>Tentang</h2>
+      <div>
+        <p class="lead">Saya IT Support dengan pengalaman di lingkungan retail: merawat komputer dan perangkat jaringan, server, database, POS, dan CCTV, serta menangani dukungan operasional toko. Saya terbiasa menelusuri masalah teknis secara sistematis, memantau dan menyinkronkan data, dan berkoordinasi dengan tim operasional agar sistem tetap stabil.</p>
+        <p class="lead" style="margin-top:1rem">Saya cepat belajar, suka memecahkan masalah, dan nyaman bekerja mandiri maupun dalam tim.</p>
+        <div class="chips">
+          <span class="chip">IT Support &amp; Troubleshooting</span>
+          <span class="chip">Hardware &amp; Software Maintenance</span>
+          <span class="chip">LAN / Wi-Fi</span>
+          <span class="chip">MikroTik</span>
+          <span class="chip">Server Administration</span>
+          <span class="chip">CCTV</span>
+          <span class="chip">SQL Server &amp; PostgreSQL</span>
+          <span class="chip">POS / Retail System</span>
+          <span class="chip">Inventory &amp; Stock Opname</span>
+          <span class="chip">Web Development</span>
+          <span class="chip">Data Analysis &amp; Reporting</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pengalaman">
+    <div class="sec">
+      <h2>Pengalaman kerja</h2>
+      <div class="job">
+        <h3>IT Support / Store EDP</h3>
+        <p class="meta">PT. Ria Indah Mandiri (Retail) · Mei 2018 – September 2026</p>
+        <ul>
+          <li>Memberikan dukungan IT untuk operasional toko dan memastikan perangkat, aplikasi, jaringan, dan sistem POS dapat digunakan dengan baik.</li>
+          <li>Menangani troubleshooting komputer, printer, perangkat POS, jaringan LAN/Wi-Fi, dan perangkat pendukung operasional.</li>
+          <li>Memasang, mengonfigurasi, memantau, dan merawat CCTV serta perangkat jaringan.</li>
+          <li>Mengelola dan menangani masalah database SQL Server dan PostgreSQL, termasuk kebutuhan reporting dan data.</li>
+          <li>Menjaga server dan layanan sistem toko tetap stabil lewat monitoring dan maintenance berkala.</li>
+          <li>Mendukung stock opname, inventori, sinkronisasi data stok, dan penyelesaian selisih antara data sistem dan kondisi di lapangan.</li>
+          <li>Membuat dan mendukung aplikasi serta tools berbasis web untuk kebutuhan internal dan monitoring operasional.</li>
+          <li>Berkoordinasi dengan user toko dan tim terkait untuk mengidentifikasi masalah, eskalasi, dan penyelesaian gangguan sistem.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="keahlian">
+    <div class="sec">
+      <h2>Keterampilan teknis</h2>
+      <dl class="skills">
+        <div><dt>Sistem operasi</dt><dd>Windows, Windows Server</dd></div>
+        <div><dt>Database</dt><dd>Microsoft SQL Server, PostgreSQL, SQL, database troubleshooting</dd></div>
+        <div><dt>Jaringan</dt><dd>LAN, TCP/IP, Wi-Fi, MikroTik, network troubleshooting</dd></div>
+        <div><dt>Server &amp; infrastruktur</dt><dd>Server maintenance, monitoring, backup/recovery dasar</dd></div>
+        <div><dt>CCTV</dt><dd>Instalasi, konfigurasi, maintenance, dan troubleshooting</dd></div>
+        <div><dt>Sistem retail</dt><dd>POS, inventori, barcode, stock opname, sinkronisasi data</dd></div>
+        <div><dt>Pengembangan</dt><dd>PHP, CodeIgniter, HTML, CSS, JavaScript, dasar Android/Desktop, Visual Basic 6</dd></div>
+        <div><dt>Tools</dt><dd>DBeaver, Microsoft Office, PhpSpreadsheet, Git/GitHub</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec">
+      <h2>Keterampilan personal</h2>
+      <ul class="cols">
+        <li>Problem solving dan analytical thinking</li>
+        <li>Teliti dan sistematis dalam menangani data maupun troubleshooting</li>
+        <li>Komunikasi dan koordinasi dengan user dan tim operasional</li>
+        <li>Mampu bekerja mandiri maupun dalam tim</li>
+        <li>Cepat mempelajari sistem dan teknologi baru</li>
+        <li>Mampu bekerja dengan target dan kondisi operasional yang dinamis</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="pendidikan">
+    <div class="sec">
+      <h2>Pendidikan</h2>
+      <div class="edu">
+        <h3>SMA Mardi Yuana Kota Sukabumi</h3>
+        <p>Jurusan IPA · 2016 – 2018</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontak" style="border-top:0">
+    <div class="contact">
+      <h2>Mari berdiskusi</h2>
+      <p>Terbuka untuk peluang di bidang IT Support, jaringan, database, atau sistem retail.</p>
+      <div class="cta" style="margin-top:0">
+        <a class="btn primary" href="mailto:aalalamsyah23@gmail.com">aalalamsyah23@gmail.com</a>
+        <a class="btn" href="https://wa.me/628551230600" target="_blank" rel="noopener">0855-123-0600</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© <span id="y">2026</span> Aal Alamsyah.J.P · Sukabumi, Jawa Barat</div>
+</footer>
+
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
