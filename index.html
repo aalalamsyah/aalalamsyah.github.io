@@ -1,250 +1,966 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aal Alamsyah.J.P — IT Support, Jaringan, Database &amp; Sistem Retail</title>
-<meta name="description" content="Profil Aal Alamsyah.J.P, IT Support berpengalaman di lingkungan retail: jaringan, server, database, POS, dan CCTV. Berbasis di Sukabumi, Jawa Barat.">
-<meta name="theme-color" content="#0f1b2d">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖥️</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#f4f6f9; --surface:#ffffff; --ink:#0f1b2d; --muted:#53627a;
-  --line:#dde3ec; --accent:#0b7f70; --accent-ink:#ffffff; --soft:#e3f3f0; --warn:#c98a0a;
-  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
-  --body:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
-}
-@media (prefers-color-scheme:dark){
-  :root{--bg:#0b1422;--surface:#121e31;--ink:#e8eef7;--muted:#9aa9c0;--line:#223149;--accent:#3cc9b4;--accent-ink:#06211d;--soft:#12302f;--warn:#e8b54a}
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font:400 1rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
-.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description"
+    content="Portofolio Aal Alamsyah.J.P — IT Support dan Store EDP berpengalaman di lingkungan retail, mencakup jaringan, server, database, POS, CCTV, inventori, dan pengembangan web.">
+  <meta property="og:title" content="Aal Alamsyah.J.P — IT Support & Systems">
+  <meta property="og:description"
+    content="IT Support, Store EDP, jaringan, database, sistem retail, dan web development.">
+  <meta property="og:type" content="website">
+  <title>Aal Alamsyah.J.P — IT Support & Systems</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230b1020'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-family='Arial' font-size='34' font-weight='700' fill='%2378e5c2'%3EAA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090e1b;
+      --surface: #101a2d;
+      --surface2: #131f35;
+      --line: rgba(174, 195, 231, .15);
+      --text: #f3f6ff;
+      --muted: #a5b2ca;
+      --accent: #78e5c2;
+      --blue: #91aaff;
+      --max: 1120px
+    }
 
-/* nav */
-header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.brand{font:700 1.05rem var(--display);text-decoration:none;letter-spacing:-.01em}
-nav{display:flex;gap:1.25rem;font-size:.92rem}
-nav a{text-decoration:none;color:var(--muted);padding:.25rem 0;border-bottom:2px solid transparent}
-nav a:hover{color:var(--ink);border-color:var(--accent)}
-@media (max-width:640px){nav a:nth-child(n+4){display:none}nav{gap:1rem}}
+    * {
+      box-sizing: border-box
+    }
 
-/* hero */
-.hero{padding:4rem 0 3.5rem;display:grid;gap:2.5rem;grid-template-columns:1.25fr 1fr;align-items:center}
-@media (max-width:860px){.hero{grid-template-columns:1fr;padding:2.5rem 0}}
-.hero h1{font:700 clamp(2.4rem,6vw,4.1rem)/1.02 var(--display);letter-spacing:-.035em}
-.role{margin-top:1rem;font-size:1.12rem;color:var(--muted);max-width:34ch}
-.role strong{color:var(--ink);font-weight:600}
-.cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
-.btn{display:inline-block;padding:.7rem 1.15rem;border-radius:8px;font-weight:600;font-size:.95rem;text-decoration:none;border:1.5px solid var(--ink)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.btn.primary:hover{filter:brightness(1.08)}
-.btn:not(.primary):hover{background:var(--surface)}
-.loc{margin-top:1.4rem;font-size:.92rem;color:var(--muted)}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px
+    }
 
-/* status panel: the memorable element */
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.panel h2{font:600 .95rem var(--body);padding:.9rem 1.15rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
-.panel h2 span{font-weight:400;color:var(--muted);font-size:.85rem}
-.panel ul{list-style:none}
-.panel li{display:flex;align-items:center;gap:.8rem;padding:.72rem 1.15rem;border-bottom:1px solid var(--line);font-size:.97rem}
-.panel li:last-child{border-bottom:0}
-.dot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;box-shadow:0 0 0 4px var(--soft)}
-.panel li small{margin-left:auto;color:var(--muted);font-size:.82rem;text-align:right}
-@media (prefers-reduced-motion:no-preference){.dot{animation:pulse 2.4s ease-in-out infinite}.panel li:nth-child(2) .dot{animation-delay:.4s}.panel li:nth-child(3) .dot{animation-delay:.8s}.panel li:nth-child(4) .dot{animation-delay:1.2s}.panel li:nth-child(5) .dot{animation-delay:1.6s}}
-@keyframes pulse{50%{box-shadow:0 0 0 7px transparent}}
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at 78% 0%, rgba(90, 112, 204, .19), transparent 38%), radial-gradient(ellipse at 0% 43%, rgba(53, 180, 147, .09), transparent 32%), var(--bg);
+      color: var(--text);
+      font: 400 16px/1.7 "DM Sans", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased
+    }
 
-/* sections */
-section{padding:3.2rem 0;border-top:1px solid var(--line)}
-.sec{display:grid;grid-template-columns:200px 1fr;gap:2rem}
-@media (max-width:760px){.sec{grid-template-columns:1fr;gap:1rem}}
-.sec>h2{font:700 1.5rem var(--display);letter-spacing:-.02em;position:sticky;top:80px;align-self:start}
-@media (max-width:760px){.sec>h2{position:static}}
-.lead{font-size:1.12rem;max-width:62ch}
+    a {
+      color: inherit;
+      text-decoration: none
+    }
 
-.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
-.chip{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.35rem .85rem;font-size:.9rem}
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent
+    }
 
-/* timeline */
-.job{position:relative;padding-left:1.6rem;border-left:2px solid var(--accent)}
-.job::before{content:"";position:absolute;left:-7px;top:.35rem;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--bg)}
-.job h3{font:700 1.25rem var(--display);letter-spacing:-.015em}
-.job .meta{color:var(--muted);font-size:.95rem;margin:.2rem 0 1rem}
-.job ul{padding-left:1.1rem;display:grid;gap:.55rem;max-width:68ch}
-.job li::marker{color:var(--accent)}
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px
+    }
 
-/* skills */
-dl.skills{display:grid;gap:0;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
-dl.skills div{display:grid;grid-template-columns:190px 1fr;gap:1rem;padding:1rem 1.25rem;border-bottom:1px solid var(--line)}
-dl.skills div:last-child{border-bottom:0}
-dl.skills dt{font-weight:600}
-dl.skills dd{color:var(--muted)}
-@media (max-width:640px){dl.skills div{grid-template-columns:1fr;gap:.2rem}}
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto
+    }
 
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.9rem 2rem;list-style:none}
-.cols li{padding-left:1.4rem;position:relative}
-.cols li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(9, 14, 27, .82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line)
+    }
 
-.edu h3{font:700 1.15rem var(--display)}
-.edu p{color:var(--muted)}
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px
+    }
 
-/* contact */
-.contact{background:var(--ink);color:var(--bg);border-radius:18px;padding:2.4rem;display:grid;gap:1.4rem}
-.contact h2{font:700 clamp(1.6rem,4vw,2.2rem)/1.1 var(--display);letter-spacing:-.025em}
-.contact p{opacity:.8;max-width:48ch}
-.contact .btn{border-color:var(--bg);color:var(--bg)}
-.contact .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.contact .btn:not(.primary):hover{background:rgba(255,255,255,.1)}
-footer{padding:2rem 0 3rem;color:var(--muted);font-size:.88rem}
-</style>
+    .brand {
+      font: 700 1.08rem "Space Grotesk", sans-serif;
+      letter-spacing: -.04em
+    }
+
+    .brand b {
+      color: var(--accent)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      color: var(--muted);
+      font-size: .9rem
+    }
+
+    .nav-links a:hover {
+      color: var(--accent)
+    }
+
+    .menu {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font: inherit
+    }
+
+    .hero {
+      padding: 92px 0 82px;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 58px;
+      align-items: center;
+      min-height: 560px
+    }
+
+    .eyebrow,
+    .kicker {
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 14px rgba(120, 229, 194, .7)
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0
+    }
+
+    h1 {
+      font: 700 clamp(2.8rem, 6vw, 5rem)/1.04 "Space Grotesk", sans-serif;
+      letter-spacing: -.065em;
+      margin: 20px 0
+    }
+
+    .shine {
+      background: linear-gradient(105deg, var(--accent), var(--blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent
+    }
+
+    .intro {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1.08rem
+    }
+
+    .intro strong {
+      color: var(--text)
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 11px 17px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-size: .92rem;
+      font-weight: 700;
+      transition: transform .2s, border-color .2s, background .2s
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent)
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: #071811;
+      border-color: var(--accent)
+    }
+
+    .btn.primary:hover {
+      background: #9af0d7
+    }
+
+    .location {
+      margin-top: 19px;
+      color: var(--muted);
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .profile-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 28px;
+      background: linear-gradient(145deg, rgba(25, 39, 66, .94), rgba(14, 22, 40, .94));
+      box-shadow: 0 25px 80px rgba(0, 0, 0, .2)
+    }
+
+    .profile-card:before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: rgba(120, 229, 194, .12);
+      filter: blur(3px);
+      top: -90px;
+      right: -75px;
+      pointer-events: none
+    }
+
+    .avatar {
+      position: relative;
+      width: 70px;
+      height: 70px;
+      display: grid;
+      place-items: center;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--accent), var(--blue));
+      color: #081323;
+      font: 700 1.55rem "Space Grotesk";
+      margin-bottom: 21px
+    }
+
+    .profile-card h2 {
+      font: 700 1.35rem "Space Grotesk";
+      letter-spacing: -.03em;
+      margin-bottom: 3px
+    }
+
+    .role {
+      color: var(--accent);
+      font-size: .91rem;
+      margin-bottom: 22px
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+      font-size: .88rem
+    }
+
+    .info span:first-child {
+      color: var(--muted);
+      flex-shrink: 0
+    }
+
+    .info span:last-child {
+      text-align: right;
+      max-width: 65%
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid rgba(120, 229, 194, .25);
+      background: rgba(120, 229, 194, .07);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #a8f1dc;
+      font-size: .78rem;
+      margin-top: 17px
+    }
+
+    .section {
+      padding: 75px 0;
+      border-top: 1px solid var(--line)
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 30px
+    }
+
+    .section h2 {
+      font: 700 clamp(2rem, 4vw, 2.8rem)/1.15 "Space Grotesk";
+      letter-spacing: -.05em;
+      margin: 10px 0 12px
+    }
+
+    .section-head p {
+      color: var(--muted);
+      margin-bottom: 0
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px
+    }
+
+    .card {
+      padding: 23px;
+      border: 1px solid var(--line);
+      background: rgba(16, 26, 45, .78);
+      border-radius: 19px;
+      transition: transform .2s, border-color .2s
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(120, 229, 194, .4)
+    }
+
+    .card-icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: rgba(120, 229, 194, .1);
+      color: var(--accent);
+      margin-bottom: 17px
+    }
+
+    .card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .card h3 {
+      font: 600 1.08rem "Space Grotesk";
+      margin-bottom: 8px
+    }
+
+    .card p {
+      font-size: .91rem;
+      color: var(--muted);
+      margin-bottom: 0
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 22px
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, .025);
+      color: #dce5fa;
+      font-size: .84rem
+    }
+
+    .timeline {
+      border-left: 1px solid rgba(120, 229, 194, .38);
+      padding-left: 25px;
+      display: grid;
+      gap: 17px
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 23px 25px;
+      border: 1px solid var(--line);
+      background: rgba(16, 26, 45, .78);
+      border-radius: 17px
+    }
+
+    .timeline-item:before {
+      content: "";
+      position: absolute;
+      left: -32px;
+      top: 29px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px var(--bg)
+    }
+
+    .meta {
+      color: var(--accent);
+      font-size: .79rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      margin-bottom: 7px
+    }
+
+    .timeline-item h3 {
+      font: 600 1.15rem "Space Grotesk";
+      margin-bottom: 5px
+    }
+
+    .timeline-item .submeta {
+      font-size: .88rem;
+      color: var(--muted);
+      margin-bottom: 13px
+    }
+
+    .timeline-item ul {
+      padding-left: 19px;
+      margin: 0;
+      color: var(--muted);
+      display: grid;
+      gap: 7px;
+      font-size: .92rem
+    }
+
+    .timeline-item li::marker {
+      color: var(--accent)
+    }
+
+    .skill-table {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(16, 26, 45, .72)
+    }
+
+    .skill-row {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 20px;
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .skill-row:last-child {
+      border-bottom: 0
+    }
+
+    .skill-row strong {
+      font-size: .93rem
+    }
+
+    .skill-row span {
+      color: var(--muted);
+      font-size: .92rem
+    }
+
+    .soft-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px
+    }
+
+    .soft-item {
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(16, 26, 45, .55);
+      font-size: .92rem;
+      color: #dce5fa
+    }
+
+    .soft-item:before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: 700;
+      margin-right: 10px
+    }
+
+    .education {
+      padding: 23px 25px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: rgba(16, 26, 45, .78)
+    }
+
+    .education h3 {
+      font: 600 1.12rem "Space Grotesk";
+      margin-bottom: 5px
+    }
+
+    .education p {
+      color: var(--muted);
+      margin: 0
+    }
+
+    .contact {
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(125deg, rgba(120, 229, 194, .1), rgba(145, 170, 255, .08));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px
+    }
+
+    .contact h2 {
+      margin: 8px 0 10px
+    }
+
+    .contact p {
+      color: var(--muted);
+      max-width: 570px;
+      margin: 0
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex-shrink: 0
+    }
+
+    .footer {
+      padding: 27px 0 36px;
+      color: var(--muted);
+      font-size: .84rem
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap
+    }
+
+    .footer a {
+      color: var(--accent)
+    }
+
+    @media(max-width:850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding: 70px 0 60px;
+        min-height: auto
+      }
+
+      .profile-card {
+        max-width: 540px
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .contact {
+        align-items: flex-start;
+        flex-direction: column
+      }
+
+      .soft-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:600px) {
+      .wrap {
+        width: calc(100% - 30px)
+      }
+
+      .nav-inner {
+        height: 64px
+      }
+
+      .menu {
+        display: block
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        top: 64px;
+        padding: 17px;
+        background: #111a2f;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        flex-direction: column;
+        gap: 12px
+      }
+
+      .nav-links.open {
+        display: flex
+      }
+
+      .hero {
+        padding: 57px 0 48px
+      }
+
+      h1 {
+        font-size: clamp(2.65rem, 13vw, 3.7rem)
+      }
+
+      .section {
+        padding: 56px 0
+      }
+
+      .grid,
+      .soft-grid {
+        grid-template-columns: 1fr
+      }
+
+      .profile-card {
+        padding: 22px
+      }
+
+      .contact {
+        padding: 24px
+      }
+
+      .contact-actions {
+        width: 100%
+      }
+
+      .contact-actions .btn {
+        flex: 1
+      }
+
+      .skill-row {
+        grid-template-columns: 1fr;
+        gap: 3px;
+        padding: 13px 16px
+      }
+
+      .timeline-item {
+        padding: 20px
+      }
+
+      .actions .btn {
+        flex: 1
+      }
+
+      .info {
+        font-size: .83rem
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+
+      *,
+      *:before,
+      *:after {
+        transition: none !important;
+        animation: none !important
+      }
+    }
+  </style>
 </head>
+
 <body>
-
-<header class="top">
-  <div class="wrap">
-    <a class="brand" href="#atas">Aal Alamsyah.J.P</a>
-    <nav aria-label="Navigasi utama">
-      <a href="#tentang">Tentang</a>
-      <a href="#pengalaman">Pengalaman</a>
-      <a href="#keahlian">Keahlian</a>
-      <a href="#pendidikan">Pendidikan</a>
-      <a href="#kontak">Kontak</a>
-    </nav>
-  </div>
-</header>
-
-<main id="atas" class="wrap">
-
-  <div class="hero">
-    <div>
-      <h1>Aal Alamsyah.J.P</h1>
-      <p class="role"><strong>IT Support</strong> yang menjaga jaringan, server, database, dan sistem POS toko retail tetap berjalan stabil.</p>
-      <div class="cta">
-        <a class="btn primary" href="mailto:aalalamsyah23@gmail.com">Kirim email</a>
-        <a class="btn" href="https://wa.me/628551230600" target="_blank" rel="noopener">Chat WhatsApp</a>
-      </div>
-      <p class="loc">Sukabumi, Jawa Barat</p>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#home" aria-label="Aal Alamsyah.J.P, beranda">AAL<b>.</b></a>
+      <button class="menu" id="menuButton" aria-label="Buka navigasi" aria-expanded="false"
+        aria-controls="navLinks">Menu ☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="Navigasi utama">
+        <a href="#about">Tentang</a><a href="#expertise">Keahlian</a><a href="#experience">Pengalaman</a><a
+          href="#education">Pendidikan</a><a href="#contact">Kontak</a>
+      </nav>
     </div>
-
-    <aside class="panel" aria-label="Cakupan pekerjaan">
-      <h2>Cakupan kerja <span>8+ tahun di retail</span></h2>
-      <ul>
-        <li><span class="dot"></span>Sistem POS <small>kasir &amp; inventori</small></li>
-        <li><span class="dot"></span>Jaringan <small>LAN, Wi-Fi, MikroTik</small></li>
-        <li><span class="dot"></span>Database <small>SQL Server, PostgreSQL</small></li>
-        <li><span class="dot"></span>Server <small>monitoring &amp; maintenance</small></li>
-        <li><span class="dot"></span>CCTV <small>instalasi &amp; perawatan</small></li>
-      </ul>
-    </aside>
-  </div>
-
-  <section id="tentang">
-    <div class="sec">
-      <h2>Tentang</h2>
+  </header>
+  <main>
+    <section class="wrap hero" id="home">
       <div>
-        <p class="lead">Saya IT Support dengan pengalaman di lingkungan retail: merawat komputer dan perangkat jaringan, server, database, POS, dan CCTV, serta menangani dukungan operasional toko. Saya terbiasa menelusuri masalah teknis secara sistematis, memantau dan menyinkronkan data, dan berkoordinasi dengan tim operasional agar sistem tetap stabil.</p>
-        <p class="lead" style="margin-top:1rem">Saya cepat belajar, suka memecahkan masalah, dan nyaman bekerja mandiri maupun dalam tim.</p>
-        <div class="chips">
-          <span class="chip">IT Support &amp; Troubleshooting</span>
-          <span class="chip">Hardware &amp; Software Maintenance</span>
-          <span class="chip">LAN / Wi-Fi</span>
-          <span class="chip">MikroTik</span>
-          <span class="chip">Server Administration</span>
-          <span class="chip">CCTV</span>
-          <span class="chip">SQL Server &amp; PostgreSQL</span>
-          <span class="chip">POS / Retail System</span>
-          <span class="chip">Inventory &amp; Stock Opname</span>
-          <span class="chip">Web Development</span>
-          <span class="chip">Data Analysis &amp; Reporting</span>
+        <div class="eyebrow"><span class="dot"></span> IT SUPPORT & INFRASTRUCTURE · RETAIL SYSTEMS · WEB DEVELOPMENT
+        </div>
+        <h1>Membangun Infrastruktur IT yang <span class="shine">Andal dan Skalabel.</span></h1>
+        <p class="intro">Halo, saya <strong>Aal Alamsyah.J.P</strong> — praktisi IT dengan pengalaman komprehensif di
+          sektor retail. Saya berfokus pada pemeliharaan infrastruktur, manajemen database, optimalisasi sistem Point of
+          Sale (POS), serta pengembangan aplikasi web terintegrasi untuk memastikan kelancaran operasional bisnis
+          harian.</p>
+        <div class="actions">
+          <a class="btn primary" href="#contact">Hubungi saya <span aria-hidden="true">↗</span></a>
+          <a class="btn" href="#expertise">Jelajahi keahlian <span aria-hidden="true">↓</span></a>
+        </div>
+        <p class="location"><span aria-hidden="true">⌖</span> Sukabumi, Jawa Barat, Indonesia</p>
+      </div>
+      <aside class="profile-card" aria-label="Ringkasan profil profesional">
+        <div class="avatar" aria-hidden="true">AA</div>
+        <h2>Aal Alamsyah.J.P</h2>
+        <p class="role">IT Support &amp; Store EDP</p>
+        <div class="info"><span>Fokus utama</span><span>IT Operations &amp; Retail Systems</span></div>
+        <div class="info"><span>Pengalaman</span><span>Mei 2018 – September 2026</span></div>
+        <div class="info"><span>Kompetensi</span><span>Infrastruktur · Database · POS</span></div>
+        <div class="info"><span>Pengembangan</span><span>Web &amp; Aplikasi Internal</span></div>
+        <div class="availability"><span class="dot"></span> Terbuka untuk peluang yang relevan</div>
+      </aside>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="section-head"><span class="kicker">TENTANG SAYA</span>
+          <h2>Menyelaraskan Teknologi dengan Efisiensi Operasional.</h2>
+          <p>Saya memiliki rekam jejak dalam mengelola kebutuhan IT secara end-to-end, baik dari sisi teknis maupun
+            strategis operasional. Pendekatan kerja saya menitikberatkan pada penyelesaian masalah (troubleshooting)
+            yang sistematis, akurasi data, pemeliharaan preventif, dan implementasi solusi praktis guna menjaga
+            stabilitas sistem perusahaan.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <path d="m16 16 4 4M8 11l2 2 4-4" />
+              </svg></div>
+            <h3>Problem Solving</h3>
+            <p>Analisis dan resolusi gangguan pada perangkat keras, perangkat lunak, maupun jaringan secara proaktif
+              untuk meminimalkan downtime.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="14" rx="2" />
+                <path d="M8 21h8M12 18v3M7 9h4M7 13h8" />
+              </svg></div>
+            <h3>Operational Support</h3>
+            <p>Pemeliharaan sistem POS, manajemen inventori, database, dan server guna memastikan produktivitas
+              operasional toko berjalan tanpa hambatan.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1" />
+                <circle cx="12" cy="12" r="5" />
+              </svg></div>
+            <h3>Continuous Improvement</h3>
+            <p>Inovasi dan pengembangan kapabilitas teknis secara berkelanjutan untuk merancang alur kerja yang lebih
+              efisien melalui sistem internal.</p>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="pengalaman">
-    <div class="sec">
-      <h2>Pengalaman kerja</h2>
-      <div class="job">
-        <h3>IT Support / Store EDP</h3>
-        <p class="meta">PT. Ria Indah Mandiri (Retail) · Mei 2018 – September 2026</p>
-        <ul>
-          <li>Memberikan dukungan IT untuk operasional toko dan memastikan perangkat, aplikasi, jaringan, dan sistem POS dapat digunakan dengan baik.</li>
-          <li>Menangani troubleshooting komputer, printer, perangkat POS, jaringan LAN/Wi-Fi, dan perangkat pendukung operasional.</li>
-          <li>Memasang, mengonfigurasi, memantau, dan merawat CCTV serta perangkat jaringan.</li>
-          <li>Mengelola dan menangani masalah database SQL Server dan PostgreSQL, termasuk kebutuhan reporting dan data.</li>
-          <li>Menjaga server dan layanan sistem toko tetap stabil lewat monitoring dan maintenance berkala.</li>
-          <li>Mendukung stock opname, inventori, sinkronisasi data stok, dan penyelesaian selisih antara data sistem dan kondisi di lapangan.</li>
-          <li>Membuat dan mendukung aplikasi serta tools berbasis web untuk kebutuhan internal dan monitoring operasional.</li>
-          <li>Berkoordinasi dengan user toko dan tim terkait untuk mengidentifikasi masalah, eskalasi, dan penyelesaian gangguan sistem.</li>
-        </ul>
+    <section class="section" id="expertise">
+      <div class="wrap">
+        <div class="section-head"><span class="kicker">KEAHLIAN UTAMA</span>
+          <h2>Kompetensi Teknis & Operasional.</h2>
+          <p>Integrasi antara keterampilan infrastruktur IT, manajemen sistem retail, analitik data, dan pengembangan
+            perangkat lunak.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="13" rx="2" />
+                <path d="M8 21h8M12 17v4M7 8h10" />
+              </svg></div>
+            <h3>IT Support &amp; Hardware</h3>
+            <p>Troubleshooting PC, printer, perangkat POS, instalasi software, pemeliharaan perangkat, dan dukungan
+              pengguna.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="5" cy="12" r="2.5" />
+                <circle cx="19" cy="5" r="2.5" />
+                <circle cx="19" cy="19" r="2.5" />
+                <path d="m7.3 10.8 9.4-4.6M7.3 13.2l9.4 4.6" />
+              </svg></div>
+            <h3>Networking &amp; CCTV</h3>
+            <p>LAN, Wi-Fi, TCP/IP, dasar routing, pemantauan konektivitas, serta instalasi dan perawatan CCTV.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <ellipse cx="12" cy="5" rx="8" ry="3" />
+                <path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7" />
+              </svg></div>
+            <h3>Database &amp; Reporting</h3>
+            <p>SQL Server, PostgreSQL, query data, analisis database, pemeriksaan konsistensi data, dan pelaporan.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16" />
+              </svg></div>
+            <h3>Web Development</h3>
+            <p>PHP, CodeIgniter 4, HTML, CSS, JavaScript, pengembangan fitur web, dan integrasi data.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 4h16v16H4zM4 9h16M9 9v11M14 9v11" />
+                <path d="M7 6.5h.01M10 6.5h.01" />
+              </svg></div>
+            <h3>Retail Systems &amp; Inventory</h3>
+            <p>Sistem POS, inventori, barcode, stock opname, sinkronisasi data stok, dan dukungan operasional toko.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
+                <circle cx="12" cy="12" r="5" />
+                <path d="m10 12 1.5 1.5L14 10" />
+              </svg></div>
+            <h3>Server &amp; Maintenance</h3>
+            <p>Pemantauan dan pemeliharaan server serta layanan sistem untuk membantu menjaga kestabilan operasional.
+            </p>
+          </article>
+        </div>
+        <div class="skills" aria-label="Teknologi dan tools"><span class="pill">Windows</span><span class="pill">Windows
+            Server</span><span class="pill">SQL Server</span><span class="pill">PostgreSQL</span><span
+            class="pill">PHP</span><span class="pill">CodeIgniter 4</span><span class="pill">HTML &amp; CSS</span><span
+            class="pill">JavaScript</span><span class="pill">MikroTik</span><span class="pill">LAN / Wi-Fi</span><span
+            class="pill">CCTV</span><span class="pill">POS / EDP</span><span class="pill">PhpSpreadsheet</span><span
+            class="pill">DBeaver</span><span class="pill">Git / GitHub</span><span class="pill">Microsoft
+            Office</span><span class="pill">Visual Basic 6</span></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="keahlian">
-    <div class="sec">
-      <h2>Keterampilan teknis</h2>
-      <dl class="skills">
-        <div><dt>Sistem operasi</dt><dd>Windows, Windows Server</dd></div>
-        <div><dt>Database</dt><dd>Microsoft SQL Server, PostgreSQL, SQL, database troubleshooting</dd></div>
-        <div><dt>Jaringan</dt><dd>LAN, TCP/IP, Wi-Fi, MikroTik, network troubleshooting</dd></div>
-        <div><dt>Server &amp; infrastruktur</dt><dd>Server maintenance, monitoring, backup/recovery dasar</dd></div>
-        <div><dt>CCTV</dt><dd>Instalasi, konfigurasi, maintenance, dan troubleshooting</dd></div>
-        <div><dt>Sistem retail</dt><dd>POS, inventori, barcode, stock opname, sinkronisasi data</dd></div>
-        <div><dt>Pengembangan</dt><dd>PHP, CodeIgniter, HTML, CSS, JavaScript, dasar Android/Desktop, Visual Basic 6</dd></div>
-        <div><dt>Tools</dt><dd>DBeaver, Microsoft Office, PhpSpreadsheet, Git/GitHub</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <section>
-    <div class="sec">
-      <h2>Keterampilan personal</h2>
-      <ul class="cols">
-        <li>Problem solving dan analytical thinking</li>
-        <li>Teliti dan sistematis dalam menangani data maupun troubleshooting</li>
-        <li>Komunikasi dan koordinasi dengan user dan tim operasional</li>
-        <li>Mampu bekerja mandiri maupun dalam tim</li>
-        <li>Cepat mempelajari sistem dan teknologi baru</li>
-        <li>Mampu bekerja dengan target dan kondisi operasional yang dinamis</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="pendidikan">
-    <div class="sec">
-      <h2>Pendidikan</h2>
-      <div class="edu">
-        <h3>SMA Mardi Yuana Kota Sukabumi</h3>
-        <p>Jurusan IPA · 2016 – 2018</p>
+    <section class="section" id="experience">
+      <div class="wrap">
+        <div class="section-head"><span class="kicker">REKAM JEJAK PROFESIONAL</span>
+          <h2>Solusi IT Berbasis Kebutuhan Operasional Nyata.</h2>
+          <p>Pengalaman kerja yang menggabungkan dukungan teknis, pengelolaan sistem, dan koordinasi dengan tim
+            operasional.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="meta">IT OPERATIONS · RETAIL</div>
+            <h3>IT Support / Store EDP</h3>
+            <p class="submeta">PT. Ria Indah Mandiri · Mei 2018 – September 2026</p>
+            <ul>
+              <li>Menyediakan dukungan IT komprehensif (Level 1 & 2) untuk operasional toko, memastikan seluruh
+                perangkat keras, aplikasi, dan sistem POS berfungsi optimal.</li>
+              <li>Melakukan instalasi, konfigurasi, dan pemeliharaan infrastruktur jaringan (LAN/Wi-Fi) serta sistem
+                keamanan (CCTV).</li>
+              <li>Mengelola administrasi database (SQL Server & PostgreSQL), termasuk ekstraksi data, pemeliharaan
+                integritas data, dan penyusunan laporan (reporting).</li>
+              <li>Mengeksekusi pemeliharaan server dan layanan sistem secara berkala untuk menjaga stabilitas
+                infrastruktur (uptime).</li>
+              <li>Mengawasi sistem inventori ritel, mengawal proses stock opname, sinkronisasi stok, serta rekonsiliasi
+                data antara sistem dan fisik lapangan.</li>
+              <li>Merancang dan mengembangkan aplikasi internal berbasis web guna menunjang produktivitas dan pemantauan
+                operasional.</li>
+            </ul>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="kontak" style="border-top:0">
-    <div class="contact">
-      <h2>Mari berdiskusi</h2>
-      <p>Terbuka untuk peluang di bidang IT Support, jaringan, database, atau sistem retail.</p>
-      <div class="cta" style="margin-top:0">
-        <a class="btn primary" href="mailto:aalalamsyah23@gmail.com">aalalamsyah23@gmail.com</a>
-        <a class="btn" href="https://wa.me/628551230600" target="_blank" rel="noopener">0855-123-0600</a>
+    <section class="section" id="technical-skills">
+      <div class="wrap">
+        <div class="section-head"><span class="kicker">Rincian teknis</span>
+          <h2>Area kompetensi.</h2>
+          <p>Ringkasan teknologi dan ruang lingkup pekerjaan yang pernah ditangani.</p>
+        </div>
+        <div class="skill-table">
+          <div class="skill-row"><strong>Sistem operasi</strong><span>Windows, Windows Server</span></div>
+          <div class="skill-row"><strong>Database</strong><span>Microsoft SQL Server, PostgreSQL, SQL, database
+              troubleshooting, analisis data</span></div>
+          <div class="skill-row"><strong>Jaringan</strong><span>LAN, TCP/IP, Wi-Fi, MikroTik, network
+              troubleshooting</span></div>
+          <div class="skill-row"><strong>Server &amp; infrastruktur</strong><span>Server maintenance, monitoring,
+              pemeliharaan layanan, backup/recovery dasar</span></div>
+          <div class="skill-row"><strong>CCTV</strong><span>Instalasi, konfigurasi, maintenance, dan
+              troubleshooting</span></div>
+          <div class="skill-row"><strong>Sistem retail</strong><span>POS, inventori, barcode, stock opname, sinkronisasi
+              data stok</span></div>
+          <div class="skill-row"><strong>Pengembangan</strong><span>PHP, CodeIgniter, HTML, CSS, JavaScript, dasar
+              Android/Desktop, Visual Basic 6</span></div>
+          <div class="skill-row"><strong>Tools</strong><span>DBeaver, Microsoft Office, PhpSpreadsheet,
+              Git/GitHub</span></div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-</main>
+    <section class="section" id="strengths">
+      <div class="wrap">
+        <div class="section-head"><span class="kicker">ETOS KERJA</span>
+          <h2>Nilai Profesional.</h2>
+          <p>Prinsip kerja yang mendukung penanganan masalah teknis dan kolaborasi sehari-hari.</p>
+        </div>
+        <div class="soft-grid">
+          <div class="soft-item">Kapasitas pemecahan masalah dan pemikiran analitis yang kuat</div>
+          <div class="soft-item">Tingkat ketelitian tinggi dan pendekatan sistematis dalam troubleshooting</div>
+          <div class="soft-item">Kemampuan komunikasi efektif lintas departemen (user dan tim operasional)</div>
+          <div class="soft-item">Kinerja solid baik secara mandiri maupun dalam kolaborasi tim</div>
+          <div class="soft-item">Daya adaptasi tinggi terhadap teknologi baru dan lingkungan kerja dinamis</div>
+          <div class="soft-item">Berorientasi pada target penyelesaian masalah (SLA) dan kelancaran operasional</div>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  <div class="wrap">© <span id="y">2026</span> Aal Alamsyah.J.P · Sukabumi, Jawa Barat</div>
-</footer>
+    <section class="section" id="education">
+      <div class="wrap">
+        <div class="section-head"><span class="kicker">Pendidikan</span>
+          <h2>Riwayat pendidikan.</h2>
+        </div>
+        <div class="education">
+          <h3>SMA Mardi Yuana Kota Sukabumi</h3>
+          <p>Jurusan IPA · 2016 – 2018</p>
+        </div>
+      </div>
+    </section>
 
-<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="contact">
+          <div><span class="kicker">MARI BERKOLABORASI</span>
+            <h2>Diskusikan Kebutuhan Infrastruktur IT Anda.</h2>
+            <p>Saya terbuka untuk peluang karir dan diskusi profesional di bidang IT Support, manajemen sistem retail,
+              pengelolaan database, maupun pengembangan web.</p>
+          </div>
+          <div class="contact-actions">
+            <a class="btn primary" href="mailto:aalalamsyah23@gmail.com" aria-label="Kirim email ke Aal Alamsyah.J.P">✉
+              Email saya ↗</a>
+            <a class="btn" href="https://wa.me/628551230600" target="_blank" rel="noopener noreferrer"
+              aria-label="Hubungi melalui WhatsApp">WhatsApp ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="wrap footer-inner"><span>© <span id="year"></span> Aal Alamsyah.J.P · Dibuat dengan HTML, CSS &amp;
+        JavaScript.</span><a href="#home">Kembali ke atas ↑</a></div>
+  </footer>
+  <script>
+    const menuButton = document.getElementById('menuButton');
+    const navLinks = document.getElementById('navLinks');
+    menuButton.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
+
 </html>
